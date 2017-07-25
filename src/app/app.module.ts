@@ -1,9 +1,12 @@
+import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+
+import { AngularFireModule } from 'angularfire2';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +27,8 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
   imports: [
     BrowserModule,
     MaterializeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [PatrimonioService],
   bootstrap: [AppComponent]
