@@ -1,3 +1,9 @@
-.login-form {
-    width: 300px;
+nav {
+    background: #f98a05;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #f98a05 0%, #fa9d26 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f98a05 0%, #fa9d26 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f98a05 0%, #fa9d26 100%);
 }
