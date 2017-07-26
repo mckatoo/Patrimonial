@@ -1,4 +1,3 @@
-import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,11 +5,13 @@ import { MaterializeModule } from "angular2-materialize";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule  } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { PatrimonioService } from './controle-patrimonial/patrimonio.service';
 import { PatrimonioDetalheComponent } from './controle-patrimonial/patrimonio-detalhe/patrimonio-detalhe.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ControlePatrimonialComponent } from './controle-patrimonial/controle-patrimonial.component';
@@ -28,9 +29,11 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
     BrowserModule,
     MaterializeModule,
     AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [PatrimonioService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

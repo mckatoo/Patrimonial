@@ -1,3 +1,16 @@
-<p>
-    controle-patrimonial works!
-</p>
+<table class="bordered">
+    <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Descrição</th>
+            <th data-field="price">Data de Aquisição</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of patrimonios | async">
+            <td>{{p.$key}}</td>
+            <td>{{p.descr}}</td>
+            <td>{{p.dataAquisicao}}</td>
+        </tr>
+    </tbody>
+</table>
