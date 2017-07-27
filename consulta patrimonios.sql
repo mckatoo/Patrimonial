@@ -1,5 +1,4 @@
-SELECT ctrlpatrimonio.cod as id,
-tipo.nome as tipo,
+SELECT tipo.nome as tipo,
 ctrlpatrimonio.numPlacaPatr,
 ctrlpatrimonio.descr,
 setor.nome as setor,
@@ -7,6 +6,7 @@ areainst.nome as areainst,
 ctrlpatrimonio.numNotaFiscal,
 fornecedor.nome as fornecedor,
 ctrlpatrimonio.dataAquisicao,
+ctrlpatrimonio.ativo,
 login.nome as autor
 FROM 
 `iesi-patrimonio`.ctrlpatrimonio,
