@@ -1,0 +1,192 @@
+[
+	{
+		"nivel" : 1,
+		"nome" : "Adminstrador",
+		"usuario" : "mestre",
+		"senha" : "iesiita",
+		"email" : "cpd.iesi@unip.br",
+		"ativo" : "s",
+		"ult_acesso" : "2016-01-19 13:03:38",
+		"setor" : "inspetor de aluno"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Milton Carlos Katoo",
+		"usuario" : "mckatoo",
+		"senha" : "mikito",
+		"email" : "mckatoo@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2017-07-26 14:41:14",
+		"setor" : "lab. INFORMATICA 3"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Iago Moreira Pacheco",
+		"usuario" : "iagomp",
+		"senha" : "iesiita",
+		"email" : "iesi.cpd@unip.br",
+		"ativo" : "n",
+		"ult_acesso" : "2015-03-17 20:30:56",
+		"setor" : "lab. informática 1"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Anderson Adami",
+		"usuario" : "anderson",
+		"senha" : "iesiita",
+		"email" : "andersonadami@hotmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2014-11-24 20:29:00",
+		"setor" : "lab. informática 1"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Patrick",
+		"usuario" : "patrick",
+		"senha" : "patrick",
+		"email" : "patusrick@gmail.com",
+		"ativo" : "n",
+		"ult_acesso" : "2014-03-31 18:10:49",
+		"setor" : "lab. informática 1"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Juliana",
+		"usuario" : "jujuenf",
+		"senha" : "juju1209",
+		"email" : "jiju.barbosa@gmail.com",
+		"ativo" : "n",
+		"ult_acesso" : "2015-02-03 19:19:02",
+		"setor" : "laboratório de enfermagem"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Josiane Fisio",
+		"usuario" : "clijosi",
+		"senha" : "josicli",
+		"email" : "clinicaiesi@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2017-07-25 18:11:19",
+		"setor" : "CLÍNICA DA SAÚDE - FISIOTERAPIA "
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Josiane Enferm",
+		"usuario" : "enfermjosi",
+		"senha" : "josienferm",
+		"email" : "clinicaiesi@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2016-08-25 16:47:12",
+		"setor" : "CLÍNICA DA SAÚDE - ENFERMAGEM"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Juliana",
+		"usuario" : "jujucine",
+		"senha" : "juju1209",
+		"email" : "jiju.barbosa@gmail.com",
+		"ativo" : "n",
+		"ult_acesso" : "2014-12-16 21:17:32",
+		"setor" : "laboratorio de cinesiologia"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "wesley2",
+		"usuario" : "wesley2",
+		"senha" : "wesley",
+		"email" : "jiju.barbosa@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2017-01-13 15:11:33",
+		"setor" : "laboratório de anatomia"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Nefi Lehi de Moraes",
+		"usuario" : "nefilehi",
+		"senha" : "19981999",
+		"email" : "nefimoraes@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-01-30 15:44:05",
+		"setor" : "secretaria"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "PATRICIA BAUMANN POL",
+		"usuario" : "patricia",
+		"senha" : "patricia",
+		"email" : "iesi@unip.br",
+		"ativo" : "s",
+		"ult_acesso" : "2015-02-19 14:17:41",
+		"setor" : "gerência"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Cristiane",
+		"usuario" : "crisclifisio",
+		"senha" : "cris1573",
+		"email" : "cristiane.provas@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-03-10 18:44:24",
+		"setor" : "CLÍNICA DA SAÚDE - FISIOTERAPIA "
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Cristiane",
+		"usuario" : "crisclienf",
+		"senha" : "cris1573",
+		"email" : "cristiane.provas@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-03-10 17:46:21",
+		"setor" : "CLÍNICA DA SAÚDE - ENFERMAGEM"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Cristiane",
+		"usuario" : "crislabenf",
+		"senha" : "cris1573",
+		"email" : "cristiane.provas@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-03-10 18:25:27",
+		"setor" : "laboratório de enfermagem"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Cristiane",
+		"usuario" : "crislabcin",
+		"senha" : "cris1573",
+		"email" : "cristiane.provas@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-03-10 18:41:58",
+		"setor" : "laboratorio de cinesiologia"
+	},
+	{
+		"nivel" : 3,
+		"nome" : "Cristiane",
+		"usuario" : "crislabana",
+		"senha" : "cris1573",
+		"email" : "cristiane.provas@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2015-03-10 18:45:00",
+		"setor" : "laboratório de anatomia"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Wesley",
+		"usuario" : "wesley",
+		"senha" : "931215",
+		"email" : "labmulti.iesi@gmail.com",
+		"ativo" : "s",
+		"ult_acesso" : "2016-12-30 12:50:25",
+		"setor" : "laboratorio multidisciplinar"
+	},
+	{
+		"nivel" : 2,
+		"nome" : "Miriam Zanesco",
+		"usuario" : "mirian",
+		"senha" : "iesimirian",
+		"email" : "mirian.fe.zanesco@outlook.com",
+		"ativo" : "s",
+		"ult_acesso" : "2016-01-20 14:08:15",
+		"setor" : "biblioteca"
+	}
+]

@@ -1,4 +1,718 @@
 {
+    "login": [{
+            "nivel": 1,
+            "nome": "Adminstrador",
+            "usuario": "mestre",
+            "senha": "iesiita",
+            "email": "cpd.iesi@unip.br",
+            "ativo": "s",
+            "ult_acesso": "2016-01-19 13:03:38",
+            "setor": "inspetor de aluno"
+        },
+        {
+            "nivel": 2,
+            "nome": "Milton Carlos Katoo",
+            "usuario": "mckatoo",
+            "senha": "mikito",
+            "email": "mckatoo@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2017-07-26 14:41:14",
+            "setor": "lab. INFORMATICA 3"
+        },
+        {
+            "nivel": 2,
+            "nome": "Iago Moreira Pacheco",
+            "usuario": "iagomp",
+            "senha": "iesiita",
+            "email": "iesi.cpd@unip.br",
+            "ativo": "n",
+            "ult_acesso": "2015-03-17 20:30:56",
+            "setor": "lab. informática 1"
+        },
+        {
+            "nivel": 2,
+            "nome": "Anderson Adami",
+            "usuario": "anderson",
+            "senha": "iesiita",
+            "email": "andersonadami@hotmail.com",
+            "ativo": "s",
+            "ult_acesso": "2014-11-24 20:29:00",
+            "setor": "lab. informática 1"
+        },
+        {
+            "nivel": 3,
+            "nome": "Patrick",
+            "usuario": "patrick",
+            "senha": "patrick",
+            "email": "patusrick@gmail.com",
+            "ativo": "n",
+            "ult_acesso": "2014-03-31 18:10:49",
+            "setor": "lab. informática 1"
+        },
+        {
+            "nivel": 3,
+            "nome": "Juliana",
+            "usuario": "jujuenf",
+            "senha": "juju1209",
+            "email": "jiju.barbosa@gmail.com",
+            "ativo": "n",
+            "ult_acesso": "2015-02-03 19:19:02",
+            "setor": "laboratório de enfermagem"
+        },
+        {
+            "nivel": 3,
+            "nome": "Josiane Fisio",
+            "usuario": "clijosi",
+            "senha": "josicli",
+            "email": "clinicaiesi@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2017-07-25 18:11:19",
+            "setor": "CLÍNICA DA SAÚDE - FISIOTERAPIA "
+        },
+        {
+            "nivel": 3,
+            "nome": "Josiane Enferm",
+            "usuario": "enfermjosi",
+            "senha": "josienferm",
+            "email": "clinicaiesi@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2016-08-25 16:47:12",
+            "setor": "CLÍNICA DA SAÚDE - ENFERMAGEM"
+        },
+        {
+            "nivel": 3,
+            "nome": "Juliana",
+            "usuario": "jujucine",
+            "senha": "juju1209",
+            "email": "jiju.barbosa@gmail.com",
+            "ativo": "n",
+            "ult_acesso": "2014-12-16 21:17:32",
+            "setor": "laboratorio de cinesiologia"
+        },
+        {
+            "nivel": 3,
+            "nome": "wesley2",
+            "usuario": "wesley2",
+            "senha": "wesley",
+            "email": "jiju.barbosa@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2017-01-13 15:11:33",
+            "setor": "laboratório de anatomia"
+        },
+        {
+            "nivel": 2,
+            "nome": "Nefi Lehi de Moraes",
+            "usuario": "nefilehi",
+            "senha": "19981999",
+            "email": "nefimoraes@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-01-30 15:44:05",
+            "setor": "secretaria"
+        },
+        {
+            "nivel": 2,
+            "nome": "PATRICIA BAUMANN POL",
+            "usuario": "patricia",
+            "senha": "patricia",
+            "email": "iesi@unip.br",
+            "ativo": "s",
+            "ult_acesso": "2015-02-19 14:17:41",
+            "setor": "gerência"
+        },
+        {
+            "nivel": 3,
+            "nome": "Cristiane",
+            "usuario": "crisclifisio",
+            "senha": "cris1573",
+            "email": "cristiane.provas@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-03-10 18:44:24",
+            "setor": "CLÍNICA DA SAÚDE - FISIOTERAPIA "
+        },
+        {
+            "nivel": 3,
+            "nome": "Cristiane",
+            "usuario": "crisclienf",
+            "senha": "cris1573",
+            "email": "cristiane.provas@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-03-10 17:46:21",
+            "setor": "CLÍNICA DA SAÚDE - ENFERMAGEM"
+        },
+        {
+            "nivel": 3,
+            "nome": "Cristiane",
+            "usuario": "crislabenf",
+            "senha": "cris1573",
+            "email": "cristiane.provas@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-03-10 18:25:27",
+            "setor": "laboratório de enfermagem"
+        },
+        {
+            "nivel": 3,
+            "nome": "Cristiane",
+            "usuario": "crislabcin",
+            "senha": "cris1573",
+            "email": "cristiane.provas@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-03-10 18:41:58",
+            "setor": "laboratorio de cinesiologia"
+        },
+        {
+            "nivel": 3,
+            "nome": "Cristiane",
+            "usuario": "crislabana",
+            "senha": "cris1573",
+            "email": "cristiane.provas@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2015-03-10 18:45:00",
+            "setor": "laboratório de anatomia"
+        },
+        {
+            "nivel": 2,
+            "nome": "Wesley",
+            "usuario": "wesley",
+            "senha": "931215",
+            "email": "labmulti.iesi@gmail.com",
+            "ativo": "s",
+            "ult_acesso": "2016-12-30 12:50:25",
+            "setor": "laboratorio multidisciplinar"
+        },
+        {
+            "nivel": 2,
+            "nome": "Miriam Zanesco",
+            "usuario": "mirian",
+            "senha": "iesimirian",
+            "email": "mirian.fe.zanesco@outlook.com",
+            "ativo": "s",
+            "ult_acesso": "2016-01-20 14:08:15",
+            "setor": "biblioteca"
+        }
+    ],
+    "localunid": [{
+            "nome": "Campus 1"
+        },
+        {
+            "nome": "Campus 2"
+        },
+        {
+            "nome": "Campus 3"
+        },
+        {
+            "nome": "Campus 4"
+        }
+    ],
+    "fornecedores": [{
+            "nome": "cvm comercio equip p/escrit.ltda",
+            "cnpj": "13.332.356/0001-74"
+        },
+        {
+            "nome": "ronaldo aparecido gutierrez-me",
+            "cnpj": "59.018.614/0002-24"
+        },
+        {
+            "nome": "projector comercio de eletroeletronicos ltda",
+            "cnpj": "03.944.570/0002-09"
+        },
+        {
+            "nome": "TECMAQ",
+            "cnpj": ""
+        },
+        {
+            "nome": "REQUINTE",
+            "cnpj": ""
+        },
+        {
+            "nome": "PRIMATEK",
+            "cnpj": ""
+        },
+        {
+            "nome": "GILVANA BAIOCCHI GON",
+            "cnpj": ""
+        },
+        {
+            "nome": "RISPEL",
+            "cnpj": ""
+        },
+        {
+            "nome": "ACCEPT",
+            "cnpj": ""
+        },
+        {
+            "nome": "J.C. MIN",
+            "cnpj": ""
+        },
+        {
+            "nome": "KANGURU INFORM",
+            "cnpj": ""
+        },
+        {
+            "nome": "OFFICER",
+            "cnpj": ""
+        },
+        {
+            "nome": "PAULO AUGUSTO CHAGAS",
+            "cnpj": ""
+        },
+        {
+            "nome": "FRAM",
+            "cnpj": ""
+        },
+        {
+            "nome": "PLAYER - TECNOLOGIA EM ",
+            "cnpj": ""
+        },
+        {
+            "nome": "E-CORPORATIVE",
+            "cnpj": ""
+        },
+        {
+            "nome": "PROJETORA V",
+            "cnpj": ""
+        },
+        {
+            "nome": "LENOVO",
+            "cnpj": ""
+        },
+        {
+            "nome": "ITA-GEL",
+            "cnpj": ""
+        },
+        {
+            "nome": "EXPONENCIAL",
+            "cnpj": ""
+        },
+        {
+            "nome": "VIDRA",
+            "cnpj": ""
+        },
+        {
+            "nome": "SEMINA PRODUTOS EDUCATIVOS E SERVOCOS LTDA EPP",
+            "cnpj": ""
+        },
+        {
+            "nome": "SANTA RITA TINTAS",
+            "cnpj": ""
+        },
+        {
+            "nome": "CVM COMERCIO EQUIP P/ ESCRIT. LTD",
+            "cnpj": ""
+        },
+        {
+            "nome": "UNIMAQ",
+            "cnpj": ""
+        },
+        {
+            "nome": "TECMAQ ITAPIRA LTDA ME",
+            "cnpj": ""
+        },
+        {
+            "nome": "PROJETORAV",
+            "cnpj": ""
+        },
+        {
+            "nome": "CIL COM. DE INFORMATICA LTDA",
+            "cnpj": ""
+        },
+        {
+            "nome": "CVM COMERCIO EQUIP P/ ESCRITORIO LTDA",
+            "cnpj": ""
+        },
+        {
+            "nome": "PATRICIA DE CASSIA FIGUEIREDO INFORMATICA -ME",
+            "cnpj": ""
+        },
+        {
+            "nome": "D.G.M COMERCIO DE INFORMATICA E PAPELARIA LTDA - ME",
+            "cnpj": ""
+        },
+        {
+            "nome": "KLD BIOSISTEMAS",
+            "cnpj": ""
+        },
+        {
+            "nome": "LINPLAST",
+            "cnpj": ""
+        },
+        {
+            "nome": "FORNECEDOR",
+            "cnpj": ""
+        },
+        {
+            "nome": "NAT COMPUTERS",
+            "cnpj": ""
+        },
+        {
+            "nome": "EQUIPA MAQUINAS E UTENSILIOS",
+            "cnpj": ""
+        },
+        {
+            "nome": "STONES BOUTIQUE",
+            "cnpj": ""
+        },
+        {
+            "nome": "INDEFINIDO",
+            "cnpj": ""
+        },
+        {
+            "nome": "CIVAM COMÉRCIO, IMPORTAÇÃO E EXPORTAÇÃO LTDA.",
+            "cnpj": "60.834.272/0001-19"
+        },
+        {
+            "nome": "terzi metalúrgica industrial ltda.",
+            "cnpj": "03.312.056/0001-70"
+        },
+        {
+            "nome": "instrutherm instrumentos de medicao ltda",
+            "cnpj": "53.775.862/0001-52"
+        },
+        {
+            "nome": "Ferramentas Gerais Comercio e Importacao S/A",
+            "cnpj": "92.664.028/0006-56"
+        },
+        {
+            "nome": "Nova Didacta Comercio de Equipamentos Industriais e Didaticos Ltda",
+            "cnpj": "01.419.751/0001-00"
+        },
+        {
+            "nome": "Mogiglass Artigos Para Laboratórios Ltda",
+            "cnpj": "66.886.052/0001-15"
+        },
+        {
+            "nome": "Contenco Industria e Comercio Ltda",
+            "cnpj": "17.154.931/0001-47"
+        },
+        {
+            "nome": "ngr comércio e serviços ltda-me",
+            "cnpj": "02.511.173/0001-08"
+        },
+        {
+            "nome": "Gibson soluções em tecnologia",
+            "cnpj": "09.146.661/0001-02"
+        },
+        {
+            "nome": "EXABYTE PRODUTOS E SERVICOS DE INFORMATICA LTDA - EPP",
+            "cnpj": "10.257.675/0001-74"
+        },
+        {
+            "nome": "REINALAB PRODUTOS PARA LABORATÓRIOS LTDA.",
+            "cnpj": "16.564.925/0001-03"
+        },
+        {
+            "nome": "MM GARCIA FARMACIA LTDA ME",
+            "cnpj": "15.493.292/0001-19"
+        },
+        {
+            "nome": "cirurgica trevo ltda - epp",
+            "cnpj": "96.182.837/0001-78"
+        },
+        {
+            "nome": "DENTAL E CIRURGICA PRODONLIFE LTDA.-EPP",
+            "cnpj": "74.636.952/0001-32"
+        },
+        {
+            "nome": "COMAVI COMÉRCIO DE MÁQUINAS E VISUAIS LTDA.",
+            "cnpj": "44.932.077/0001-75"
+        },
+        {
+            "nome": "CIRCUITEC INDUSTRIA DE EQUIPAMENTOS ELETRONICOS LTDA",
+            "cnpj": "06.940.817/0001-26"
+        },
+        {
+            "nome": "mm Garcia FARMÁCIA LTA me",
+            "cnpj": "15.493.292/0002-24"
+        },
+        {
+            "nome": "Carci ind.com.ap.cir.ort.ltda",
+            "cnpj": "61.461.034/0001-78"
+        },
+        {
+            "nome": "Fisio fernandes eq p/Fisioterapia ltda",
+            "cnpj": "57.449.993/0001-09"
+        },
+        {
+            "nome": "mogiglass cientifica ltda epp",
+            "cnpj": "05.230.436/0001-90"
+        },
+        {
+            "nome": "master sbg produtos ODONTOLÓGICOS ltda",
+            "cnpj": "63.007.777/0001-06"
+        },
+        {
+            "nome": "ciclo saude ltda - epp",
+            "cnpj": "10.882.402/0001-10"
+        },
+        {
+            "nome": "espacial supr. escritorio e inf.ltda",
+            "cnpj": "53.700.159/0001-85"
+        },
+        {
+            "nome": "cbs medico cientifica comercio e representação ltda",
+            "cnpj": "48.791.685/0001-68"
+        },
+        {
+            "nome": "santa luzia moveis hospitalares ltda",
+            "cnpj": "48.901.490/0001-52"
+        },
+        {
+            "nome": "kelar dist e rep ltda",
+            "cnpj": "04.087.430/0001-43"
+        },
+        {
+            "nome": "AUIMIS",
+            "cnpj": "48.071.377/0001-68"
+        },
+        {
+            "nome": "yank metalurgica ltda",
+            "cnpj": "66.900.820/001-48"
+        },
+        {
+            "nome": "bOLLATEL COMERCIO E SERVICOS",
+            "cnpj": "67.975.771/0001-75"
+        },
+        {
+            "nome": "NEW MAQ",
+            "cnpj": "00.657.183/0001-12"
+        },
+        {
+            "nome": "FEMTO INDUSTRIA E COMERCIO DE INSTRUMENTOS LTDA",
+            "cnpj": "59.720.862/0001-31"
+        },
+        {
+            "nome": "FANEM LTDA",
+            "cnpj": "61.100.244/001-30"
+        },
+        {
+            "nome": "DIMEP",
+            "cnpj": "61.099.008/001-41"
+        },
+        {
+            "nome": "ESTANTERIA COM. DE PRAT. E MOVEIS DE ACO LTDA",
+            "cnpj": "61.862.827/0001-07"
+        },
+        {
+            "nome": "PECINI LTDA",
+            "cnpj": "04.142.739/0001-99"
+        },
+        {
+            "nome": "alleanza rio com.rep.ltda",
+            "cnpj": "09.361.618/0001-51"
+        },
+        {
+            "nome": "INOVA ELETRO E ELETRONICOS LTDA",
+            "cnpj": "09.238.987/0001/51"
+        },
+        {
+            "nome": "MAQMOVEIS INDUSTRIA E COMERCIO DE MOVEIS LTDA",
+            "cnpj": "54.826.367/0001-98"
+        },
+        {
+            "nome": "Loja de moveis brotinho baratinho de itapira - epp",
+            "cnpj": "49.913.148/0001-06"
+        },
+        {
+            "nome": "pAPELARIA E BAZAR ITAPIRA LTDA - EPP",
+            "cnpj": "49.918.766/0001-49"
+        },
+        {
+            "nome": "new age time c sistemas e comercio ltda",
+            "cnpj": "68.289.487/0001-08"
+        },
+        {
+            "nome": "IDEA INDUSTRIA E COMERCIO DE MOVEIS LTDA",
+            "cnpj": "09.423.748/0001-71"
+        },
+        {
+            "nome": "DIAS & MAIA COZINHAS INDUSTRIAIS LTDA",
+            "cnpj": "07.848.129/0001-01"
+        },
+        {
+            "nome": "Du Chef Equip BHR LTDA EPP",
+            "cnpj": "10.884.507/0001-09"
+        },
+        {
+            "nome": "ALIANCA - COMERCIO E IMPORTACAO DE FERRAMENTAS LTDA",
+            "cnpj": "68.926.930/0001/04"
+        },
+        {
+            "nome": "Hz telecomunicações comercial ltda-epp",
+            "cnpj": "03.399.514/001-50"
+        },
+        {
+            "nome": "bjf eLETRICA E hIDRAULICA ltda",
+            "cnpj": "02.955.966/0001-08"
+        },
+        {
+            "nome": "TORIONE & TORIONE EQUIPAMENTOS ELETRÔNICOS",
+            "cnpj": "05.828.852/0001-95"
+        },
+        {
+            "nome": "LANABELLO IMPORTADORA E EXPORTADORA",
+            "cnpj": "74.642.943/0002-35"
+        },
+        {
+            "nome": "CORPORATIVE SOLUCOES AUDIOVISUAIS",
+            "cnpj": "08.627.774/0001-59"
+        },
+        {
+            "nome": "All nations comercio exterior s.a.",
+            "cnpj": "00.070.112/0005-42"
+        },
+        {
+            "nome": "IBRAMED INDUSTRIA BRASILEIRA DE EQUIPAMENTOS MEDICOS EIRELI",
+            "cnpj": "00.133.418/0001-77"
+        }
+    ],
+    "areainst": [{
+            "nome": "CAMPUS 1"
+        },
+        {
+            "nome": "CAMPUS 2"
+        },
+        {
+            "nome": "CAMPUS 3"
+        },
+        {
+            "nome": "INDEFINIDO"
+        },
+        {
+            "nome": "CAMPUS 4"
+        }
+    ],
+    "setores": [{
+            "nome": "lab. informática 1"
+        },
+        {
+            "nome": "biblioteca"
+        },
+        {
+            "nome": "recepção"
+        },
+        {
+            "nome": "controlador de acesso"
+        },
+        {
+            "nome": "limpeza"
+        },
+        {
+            "nome": "inspetor de aluno"
+        },
+        {
+            "nome": "arquivo morto"
+        },
+        {
+            "nome": "atendimento PROUNI"
+        },
+        {
+            "nome": "auditório"
+        },
+        {
+            "nome": "copa e cozinha"
+        },
+        {
+            "nome": "coordenação"
+        },
+        {
+            "nome": "coordenação geral"
+        },
+        {
+            "nome": "departamento pessoal"
+        },
+        {
+            "nome": "departamento de horários"
+        },
+        {
+            "nome": "direção"
+        },
+        {
+            "nome": "EAJ"
+        },
+        {
+            "nome": "empresa junior"
+        },
+        {
+            "nome": "equipamento de apoio"
+        },
+        {
+            "nome": "gerência"
+        },
+        {
+            "nome": "sala de aula bloco a"
+        },
+        {
+            "nome": "sala de aula bloco b"
+        },
+        {
+            "nome": "sala de estudos"
+        },
+        {
+            "nome": "secretaria"
+        },
+        {
+            "nome": "tesouraria"
+        },
+        {
+            "nome": "laboratório de anatomia"
+        },
+        {
+            "nome": "laboratorio de cinesiologia"
+        },
+        {
+            "nome": "laboratório de enfermagem"
+        },
+        {
+            "nome": "pátio"
+        },
+        {
+            "nome": "sala dos professores"
+        },
+        {
+            "nome": "salas de aula campus 2"
+        },
+        {
+            "nome": "salas de aula campos 2"
+        },
+        {
+            "nome": "indefinido"
+        },
+        {
+            "nome": "laboratório de informatica 2"
+        },
+        {
+            "nome": "lab. INFORMATICA 3"
+        },
+        {
+            "nome": "CLÍNICA DA SAÚDE - ENFERMAGEM"
+        },
+        {
+            "nome": "CLÍNICA DA SAÚDE - FISIOTERAPIA "
+        },
+        {
+            "nome": "lab. física"
+        },
+        {
+            "nome": "SEPI"
+        },
+        {
+            "nome": "laboratorio de farmacia"
+        },
+        {
+            "nome": "Laboratorio de nutricao"
+        },
+        {
+            "nome": "Atendimento psicopedagógico"
+        },
+        {
+            "nome": "laboratorio multidisciplinar"
+        },
+        {
+            "nome": "mAQUETARIA"
+        },
+        {
+            "nome": "LAB CONFORTO AMBIENTAL"
+        }
+    ],
     "tipos": [{
             "nome": "Aquisição"
         },

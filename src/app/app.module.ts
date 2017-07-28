@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -27,6 +28,7 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MaterializeModule,
     AppRoutingModule,
     AngularFireDatabaseModule,

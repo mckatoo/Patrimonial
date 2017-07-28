@@ -1,70 +1,100 @@
-<table class="bordered responsive">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tipo</th>
-            <th>nº Patrimonio</th>
-            <th>Descrição</th>
-            <th>Setor</th>
-            <th>Área/Instituto</th>
-            <th>nº Nota Fiscal</th>
-            <th>Fornecedor</th>
-            <th>Data de Aquisição</th>
-            <th>Autor</th>
-            <th>Editar</th>
-            <th>Duplicar</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let p of patrimonios | async">
-            <td>{{p.$key}}</td>
-            <td>{{p.tipo}}</td>
-            <td>{{p.numPlacaPatr}}</td>
-            <td>{{p.descr}}</td>
-            <td>{{p.setor}}</td>
-            <td>{{p.areainst}}</td>
-            <td>{{p.numNotaFiscal}}</td>
-            <td>{{p.fornecedor}}</td>
-            <td>{{p.dataAquisicao}}</td>
-            <td>{{p.autor}}</td>
-            <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light modal-trigger orange" (click)="openModal(modalEditar)"><i class="material-icons">edit</i></a></td>
-            <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">control_point_duplicate</i></a></td>
-            <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
-            <td *ngIf="p.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ativar"><i class="material-icons">block</i></a></td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <table class="striped">
+        <thead>
+            <tr>
+                <th nowrap>ID</th>
+                <th nowrap>Tipo</th>
+                <th nowrap>nº Patrimonio</th>
+                <th nowrap>Descrição</th>
+                <th nowrap>Setor</th>
+                <th nowrap>Área/Instituto</th>
+                <th nowrap>nº Nota Fiscal</th>
+                <th nowrap>Fornecedor</th>
+                <th nowrap>Data de Aquisição</th>
+                <th nowrap>Autor</th>
+                <th nowrap>Editar</th>
+                <th nowrap>Duplicar</th>
+                <th nowrap>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of patrimonios | async">
+                <td>{{p.$key}}</td>
+                <td>{{p.tipo}}</td>
+                <td>{{p.numPlacaPatr}}</td>
+                <td>{{p.descr}}</td>
+                <td>{{p.setor}}</td>
+                <td>{{p.areainst}}</td>
+                <td>{{p.numNotaFiscal}}</td>
+                <td>{{p.fornecedor}}</td>
+                <td>{{p.dataAquisicao | date:'dd/MM/y'}}</td>
+                <td>{{p.autor}}</td>
+                <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light modal-trigger orange" (click)="openModal(modalEditar)"><i class="material-icons">edit</i></a></td>
+                <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">control_point_duplicate</i></a></td>
+                <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
+                <td *ngIf="p.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ativar"><i class="material-icons">block</i></a></td>
+            </tr>
+        </tbody>
+    </table>
 
-<!-- Modal Editar -->
-<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalEditar">
-    <div class="modal-content">
-        <h4>Modal Header</h4>
-        <div class="row">
-            <form class="col s12" #f="ngForm" (ngSubmit)="onSubmit(f)">
-                <div class="input-field col s12 l6">
-                    <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="tipo" class="validate" name="tipo">
-                        <option *ngFor="let tipo of tipos" [value]="tipo.value">{{tipo.name}}</option>
+    <!-- Modal Editar -->
+    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalEditar">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <div class="row">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
+                    <div class="input-field col s12 l6">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="tipo" class="validate" name="tipo">
+                        <option *ngFor="let tipo of tipos | async" [value]="tipo.nome">{{tipo.nome}}</option>
                     </select>
-                    <label for="tipo">First Name</label>
-                </div>
-                <div class="input-field col s12 l6">
-                    <input type="text" id="last_name" class="validate">
-                    <label for="last_name">Last Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <input type="email" id="email" class="validate">
-                    <label for="email" data-error="wrong" data-success="right">Email</label>
-                </div>
-                <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Textarea</label>
-                </div>
-            </form>
+                        <label for="tipo">Tipo</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" id="patrimonio" class="validate" name="patrimonio">
+                        <label for="patrimonio">nº Patr</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="descr" class="materialize-textarea"></textarea>
+                        <label for="descr">Descrição</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="setor" class="validate" name="setor">
+                        <option *ngFor="let setor of setores | async" [value]="setor.nome">{{setor.nome}}</option>
+                    </select>
+                        <label for="tipo">Setor</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst">
+                        <option *ngFor="let area of areainst | async" [value]="area.nome">{{area.nome}}</option>
+                    </select>
+                        <label for="tipo">Área/Inst</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" id="nota" class="validate" name="nota">
+                        <label for="nota">nº NF</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedores">
+                        <option *ngFor="let forn of fornecedores | async" [value]="forn.nome">{{forn.nome}}</option>
+                    </select>
+                        <label for="tipo">Fornecedor</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <input type="text" id="dataAquisicao" class="validate" materialize="pickadate" [materializeActions]="actions" [materializeParams]="[{format: 'dd/mm/yyyy',today: 'Hoje',clear: 'Limpar',closeOnSelect: true}]" name="dataAquisicao">
+                        <label for="dataAquisicao">Data de Aquisição</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autores">
+                        <option *ngFor="let autor of autores | async" [value]="autor.nome">{{autor.nome}}</option>
+                    </select>
+                        <label for="tipo">Autor</label>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <a class="waves-effect waves-green btn blue" (click)="closeModal(modalEditar)">Fechar</a>
-        <a class="modal-action modal-close waves-effect waves-green btn blue">Atualizar</a>
+        <div class="modal-footer">
+            <a class="waves-effect waves-green btn blue" (click)="closeModal(modalEditar)">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmit(f)">Atualizar</a>
+        </div>
     </div>
 </div>
