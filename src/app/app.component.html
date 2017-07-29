@@ -1,17 +1,19 @@
 <header>
-    <nav>
-        <div class="nav-wrapper">
-            <div class="container">
-                <a routerLink="" class="brand-logo">Logo</a>
-                <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li routerLinkActive="active"><a routerLink="controle-patrimonial">Controle Patrimonial</a></li>
-                    <li routerLinkActive="active"><a routerLink="usuarios">Usuários</a></li>
-                    <li><a>Sair</a></li>
-                </ul>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <div class="container">
+                    <a routerLink="" class="brand-logo">Logo</a>
+                    <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li routerLinkActive="active"><a routerLink="controle-patrimonial">Controle Patrimonial</a></li>
+                        <li routerLinkActive="active"><a routerLink="usuarios">Usuários</a></li>
+                        <li><a>Sair</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </header>
 <main>
     <router-outlet></router-outlet>

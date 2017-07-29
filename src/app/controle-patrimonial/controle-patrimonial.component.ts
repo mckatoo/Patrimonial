@@ -1,9 +1,9 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {MaterializeAction} from 'angular2-materialize';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-controle-patrimonial',
@@ -12,13 +12,15 @@ import {MaterializeAction} from 'angular2-materialize';
 })
 export class ControlePatrimonialComponent implements OnInit {
 
-  patrimonios: FirebaseListObservable<any>;
+  patrimonios: FirebaseListObservable<object>;
   tipos: FirebaseListObservable<any>;
   setores: FirebaseListObservable<any>;
   areainst: FirebaseListObservable<any>;
   fornecedores: FirebaseListObservable<any>;
   autores: FirebaseListObservable<any>;
-  patrimonioEdit: any = { 
+  actions = new EventEmitter<string | MaterializeAction>();
+  modal = new EventEmitter<string | MaterializeAction>();
+  patrimonioEdit: any = {
     "areainst": "",
     "ativo": "",
     "autor": "",
@@ -31,21 +33,6 @@ export class ControlePatrimonialComponent implements OnInit {
     "setor": "",
     "tipo": ""
   };
-
-  actions = new EventEmitter<string|MaterializeAction>();
-  modalEditar = new EventEmitter<string|MaterializeAction>();
-  openModal(modal,data) {
-    this.patrimonioEdit = data;
-    // console.log(this.patrimonioEdit.numPlacaPatr);
-    modal.emit({action:'modal',params:['open']});
-  }
-  closeModal(modal) {
-    modal.emit({action:'modal',params:['close']});
-  }
-
-  onSubmit(form){
-    console.log(form.value);
-  }
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -62,6 +49,40 @@ export class ControlePatrimonialComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  openModal(data) {
+    this.patrimonioEdit = data;
+    this.modal.emit({ action: 'modal', params: ['open'] });
+  }
+  closeModal() {
+    this.limpar();
+    this.modal.emit({ action: 'modal', params: ['close'] });
+  }
+
+  onSubmit(data) {
+    // this.patrimonios.update(this.patrimonioEdit.$key, this.patrimonioEdit);
+    this.patrimonios.update(this.patrimonioEdit.$key, data.value);
+    // console.log(data.value);
+    // console.log(this.patrimonioEdit.$key);
+    this.limpar();
+  }
+
+  limpar() {
+    this.patrimonioEdit.key = "";
+    this.patrimonioEdit = {
+      "areainst": "",
+      "ativo": "",
+      "autor": "",
+      "dataAquisicao": "",
+      "descr": "",
+      "fornecedor": "",
+      "numNotaFiscal": "",
+      "numPlacaPatr": "",
+      "obs": "",
+      "setor": "",
+      "tipo": ""
+    };
   }
 
 }
