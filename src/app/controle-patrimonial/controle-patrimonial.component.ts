@@ -18,10 +18,25 @@ export class ControlePatrimonialComponent implements OnInit {
   areainst: FirebaseListObservable<any>;
   fornecedores: FirebaseListObservable<any>;
   autores: FirebaseListObservable<any>;
+  patrimonioEdit: any = { 
+    "areainst": "",
+    "ativo": "",
+    "autor": "",
+    "dataAquisicao": "",
+    "descr": "",
+    "fornecedor": "",
+    "numNotaFiscal": "",
+    "numPlacaPatr": "",
+    "obs": "",
+    "setor": "",
+    "tipo": ""
+  };
 
   actions = new EventEmitter<string|MaterializeAction>();
   modalEditar = new EventEmitter<string|MaterializeAction>();
-  openModal(modal) {
+  openModal(modal,data) {
+    this.patrimonioEdit = data;
+    // console.log(this.patrimonioEdit.numPlacaPatr);
     modal.emit({action:'modal',params:['open']});
   }
   closeModal(modal) {
@@ -29,8 +44,7 @@ export class ControlePatrimonialComponent implements OnInit {
   }
 
   onSubmit(form){
-    console.log('ngform');
-    console.log(form);
+    console.log(form.value);
   }
 
   constructor(private db: AngularFireDatabase) {
