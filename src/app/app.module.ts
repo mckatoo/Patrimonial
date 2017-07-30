@@ -28,9 +28,9 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
     MaterializeModule,
-    AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
