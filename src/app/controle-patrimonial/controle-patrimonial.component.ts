@@ -20,6 +20,39 @@ export class ControlePatrimonialComponent implements OnInit {
   autores: FirebaseListObservable<any>;
   actions = new EventEmitter<string | MaterializeAction>();
   modal = new EventEmitter<string | MaterializeAction>();
+  paramsDatePicker = [{
+    format: 'dd/mm/yyyy',
+    today: 'Hoje',
+    clear: 'Limpar',
+    closeOnSelect: true,
+    close: 'Ok',
+    labelMonthNext: 'Próximo mês',
+    labelMonthPrev: 'Mês anterior',
+    labelMonthSelect: 'Selecione um mês',
+    labelYearSelect: 'Selecione um ano',
+    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    selectYears: 15,
+  }];
+  dateOptions = [{
+    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    today: 'Hoje',
+    clear: 'Limpar',
+    close: 'Pronto',
+    labelMonthNext: 'Próximo mês',
+    labelMonthPrev: 'Mês anterior',
+    labelMonthSelect: 'Selecione um mês',
+    labelYearSelect: 'Selecione um ano',
+    format: 'dd/mm/yyyy',
+    editable: true,
+    closeOnSelect: true,
+    selectMonths: true
+  }];
   patrimonioEdit: any = {
     "areainst": "",
     "ativo": "",
@@ -33,6 +66,28 @@ export class ControlePatrimonialComponent implements OnInit {
     "setor": "",
     "tipo": ""
   };
+
+  // private dateOptions = this.getDefaultPickaOption();
+
+  // private getDefaultPickaOption(): any {
+  //   return {
+  //     monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+  //     monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+  //     weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+  //     weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  //     today: 'Hoje',
+  //     clear: 'Limpar',
+  //     close: 'Pronto',
+  //     labelMonthNext: 'Próximo mês',
+  //     labelMonthPrev: 'Mês anterior',
+  //     labelMonthSelect: 'Selecione um mês',
+  //     labelYearSelect: 'Selecione um ano',
+  //     format: 'dd/mm/yyyy',
+  //     editable: true,
+  //     closeOnSelect: true,
+  //     selectYears: 15
+  //   };
+  // }
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -52,20 +107,28 @@ export class ControlePatrimonialComponent implements OnInit {
   }
 
   openModal(data) {
-    this.patrimonioEdit = data;
-    this.modal.emit({ action: 'modal', params: ['open'] });
+    if (data != null) {
+      this.patrimonioEdit = data;
+      this.modal.emit({ action: 'modal', params: ['open'] });
+    } else {
+      this.limpar();
+      this.modal.emit({ action: 'modal', params: ['open'] });
+    }
   }
+
   closeModal() {
     this.limpar();
     this.modal.emit({ action: 'modal', params: ['close'] });
   }
 
   onSubmit(data) {
-    // this.patrimonios.update(this.patrimonioEdit.$key, this.patrimonioEdit);
-    this.patrimonios.update(this.patrimonioEdit.$key, data.value);
-    // console.log(data.value);
-    // console.log(this.patrimonioEdit.$key);
-    this.limpar();
+    if (this.patrimonioEdit.$key != undefined) {
+      this.patrimonios.update(this.patrimonioEdit.$key, data.value);
+      this.limpar();
+    } else {
+      this.patrimonios.push(data.value);
+      this.limpar();
+    }
   }
 
   limpar() {

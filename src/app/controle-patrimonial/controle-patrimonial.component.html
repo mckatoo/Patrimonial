@@ -1,6 +1,6 @@
 <div class="card-panel">
     <div class="title z-depth-1 white-text">
-        <h4>Patrimônios</h4><a class="waves-effect waves-light btn blue right title-btn">Novo</a>
+        <h4>Patrimônios</h4><a class="waves-effect waves-light btn blue right title-btn" (click)="openModal(f)">Novo</a>
     </div>
     <table class="bordered highlight">
         <thead>
@@ -29,7 +29,7 @@
                 <td nowrap>{{p.areainst | uppercase}}</td>
                 <td>{{p.numNotaFiscal}}</td>
                 <td>{{p.fornecedor | uppercase}}</td>
-                <td>{{p.dataAquisicao | date:'dd/MM/y'}}</td>
+                <td>{{p.dataAquisicao}}</td>
                 <td>{{p.autor | uppercase}}</td>
                 <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">control_point_duplicate</i></a></td>
                 <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
@@ -41,58 +41,64 @@
     <!-- Modal Editar -->
     <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modal">
         <div class="modal-content">
-            <h4 *ngIf="patrimonioEdit">{{patrimonioEdit.numPlacaPatr | uppercase}} - {{patrimonioEdit.descr | uppercase | slice:0:10}}</h4>
+            <h4 *ngIf="patrimonioEdit.$key != undefined">{{patrimonioEdit.numPlacaPatr | uppercase}} - {{patrimonioEdit.descr | uppercase | slice:0:10}}</h4>
+            <h4 *ngIf="patrimonioEdit.$key == undefined">{{patrimonioEdit.$key}}Novo Patriônio</h4>
             <div class="row">
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
                     <div class="input-field col s12 l6">
                         <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="tipo" class="validate" name="tipo" [ngModel]="patrimonioEdit.tipo | uppercase">
-                        <option *ngFor="let tipo of tipos | async" [value]="tipo.nome | uppercase">{{tipo.nome | uppercase}}</option>
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option *ngFor="let tipo of tipos | async" [value]="tipo.nome | uppercase">{{tipo.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Tipo</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" placeholder="Patrimônio" id="patrimonio" class="validate" name="patrimonio" [ngModel]="patrimonioEdit.numPlacaPatr">
+                        <input type="text" placeholder="Patrimônio" id="patrimonio" class="validate" name="patrimonio" [ngModel]="patrimonioEdit.numPlacaPatr | uppercase">
                         <label for="patrimonio">nº Patr</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="descr" placeholder="Descrição" class="materialize-textarea" name="descr" [ngModel]="patrimonioEdit.descr"></textarea>
+                        <textarea id="descr" placeholder="Descrição" class="materialize-textarea" name="descr" [ngModel]="patrimonioEdit.descr | uppercase"></textarea>
                         <label for="descr">Descrição</label>
                     </div>
                     <div class="input-field col s12 l6">
                         <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="setor" class="validate" name="setor" [ngModel]="patrimonioEdit.setor">
-                        <option *ngFor="let setor of setores | async" [value]="setor.nome">{{setor.nome}}</option>
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option *ngFor="let setor of setores | async" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Setor</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst" [ngModel]="patrimonioEdit.areainst">
-                        <option *ngFor="let area of areainst | async" [value]="area.nome">{{area.nome}}</option>
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst" [ngModel]="patrimonioEdit.areainst | uppercase">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option *ngFor="let area of areainst | async" [value]="area.nome | uppercase">{{area.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Área/Inst</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" placeholder="Nota Fiscal" id="nota" class="validate" name="nota" [ngModel]="patrimonioEdit.numNotaFiscal">
+                        <input type="text" placeholder="Nota Fiscal" id="nota" class="validate" name="nota" [ngModel]="patrimonioEdit.numNotaFiscal | uppercase">
                         <label for="nota">nº NF</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedor" [ngModel]="patrimonioEdit.fornecedor">
-                        <option *ngFor="let forn of fornecedores | async" [value]="forn.nome">{{forn.nome}}</option>
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedor" [ngModel]="patrimonioEdit.fornecedor | uppercase">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option *ngFor="let forn of fornecedores | async" [value]="forn.nome | uppercase">{{forn.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Fornecedor</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" placeholder="Data de Aquisiçao" id="dataAquisicao" class="validate" materialize="pickadate" [materializeActions]="actions" [materializeParams]="[{format: 'dd/mm/yyyy',today: 'Hoje',clear: 'Limpar',closeOnSelect: true}]" name="dataAquisicao"
+                        <input type="text" placeholder="Data de Aquisiçao" id="dataAquisicao" class="validate" materialize="pickadate" [materializeActions]="actions" [materializeParams]="paramsDatePicker" name="dataAquisicao"
                             [ngModel]="patrimonioEdit.dataAquisicao">
                         <label for="dataAquisicao">Data de Aquisição</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autor" [ngModel]="patrimonioEdit.autor">
-                        <option *ngFor="let autor of autores | async" [value]="autor.nome">{{autor.nome}}</option>
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autor" [ngModel]="patrimonioEdit.autor | uppercase">
+                            <option value="" disabled selected>Escolha uma opção</option>
+                            <option *ngFor="let autor of autores | async" [value]="autor.nome | uppercase">{{autor.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Autor</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="obs" placeholder="Observações sobre o item" class="materialize-textarea" name="obs" [ngModel]="patrimonioEdit.obs"></textarea>
+                        <textarea id="obs" placeholder="Observações sobre o item" class="materialize-textarea" name="obs" [ngModel]="patrimonioEdit.obs | uppercase"></textarea>
                         <label for="obs">Observação</label>
                     </div>
                 </form>
