@@ -18,8 +18,8 @@ export class ControlePatrimonialComponent implements OnInit {
   areainst: FirebaseListObservable<any>;
   fornecedores: FirebaseListObservable<any>;
   autores: FirebaseListObservable<any>;
+  modalActions = new EventEmitter<string | MaterializeAction>();
   actions = new EventEmitter<string | MaterializeAction>();
-  modal = new EventEmitter<string | MaterializeAction>();
   paramsDatePicker = [{
     format: 'dd/mm/yyyy',
     today: 'Hoje',
@@ -67,22 +67,51 @@ export class ControlePatrimonialComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFileSelection(e) {
+    console.log(e.target.files[0].name)
+  }
+
   openModal(data) {
     if (data != null) {
       this.patrimonioEdit = data;
-      this.modal.emit({ action: 'modal', params: ['open'] });
+      this.modalActions.emit({ action: 'modal', params: ['open'] });
     } else {
       this.limpar();
-      this.modal.emit({ action: 'modal', params: ['open'] });
+      this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
   }
 
   closeModal() {
     this.limpar();
-    this.modal.emit({ action: 'modal', params: ['close'] });
-  }
+    this.modalActions.emit({ action: 'modal', params: ['close'] });
+}
+  
+  // openModalNota(data) {
+  //   if (data != null) {
+  //     this.patrimonioEdit = data;
+  //     this.modalNota.emit({ action: 'modalNota', params: ['open'] });
+  //   } else {
+  //     this.limpar();
+  //     this.modalNota.emit({ action: 'modalNota', params: ['open'] });
+  //   }
+  // }
+  
+  // closeModalNota() {
+  //   this.limpar();
+  //   this.modalNota.emit({ action: 'modalNota', params: ['close'] });
+  // }
 
   onSubmit(data) {
+    if (this.patrimonioEdit.$key != undefined) {
+      this.patrimonios.update(this.patrimonioEdit.$key, data.value);
+      this.limpar();
+    } else {
+      this.patrimonios.push(data.value);
+      this.limpar();
+    }
+  }
+  
+  onSubmitNota(data) {
     if (this.patrimonioEdit.$key != undefined) {
       this.patrimonios.update(this.patrimonioEdit.$key, data.value);
       this.limpar();

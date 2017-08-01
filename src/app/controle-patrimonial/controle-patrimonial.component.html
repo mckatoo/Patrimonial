@@ -19,25 +19,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="pointer" *ngFor="let p of patrimonios | async" (click)="openModal(p)">
+            <tr *ngFor="let p of patrimonios | async">
                 <td class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" [attr.data-tooltip]="p.tipo | uppercase">{{p.tipo | uppercase | slice:0:3}}</td>
                 <td>{{p.numPlacaPatr}}</td>
-                <td>{{p.descr | uppercase}}</td>
+                <td class="pointer" (click)="openModal(p)">{{p.descr | uppercase}}</td>
                 <td>{{p.setor | uppercase}}</td>
                 <td nowrap>{{p.areainst | uppercase}}</td>
-                <td>{{p.numNotaFiscal}}</td>
+                <!-- <td class="pointer" (click)="openModalNota(p.numNotaFiscal)">{{p.numNotaFiscal}}</td> -->
+                <td class="pointer">{{p.numNotaFiscal}}</td>
                 <td>{{p.fornecedor | uppercase}}</td>
                 <td>{{p.dataAquisicao}}</td>
                 <td>{{p.autor | uppercase}}</td>
                 <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">control_point_duplicate</i></a></td>
-                <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
-                <td *ngIf="p.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ativar"><i class="material-icons">block</i></a></td>
+                <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom"
+                        data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
+                <td *ngIf="p.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom"
+                        data-delay="50" data-tooltip="Ativar"><i class="material-icons">block</i></a></td>
             </tr>
         </tbody>
     </table>
 
     <!-- Modal Editar -->
-    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modal">
+    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
         <div class="modal-content">
             <h4 *ngIf="patrimonioEdit.$key != undefined">{{patrimonioEdit.numPlacaPatr | uppercase}} - {{patrimonioEdit.descr | uppercase | slice:0:10}}</h4>
             <h4 *ngIf="patrimonioEdit.$key == undefined">{{patrimonioEdit.$key}}Novo Patriônio</h4>
@@ -61,14 +64,16 @@
                         <label for="descr">Descrição</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="setor" class="validate" name="setor" [ngModel]="patrimonioEdit.setor">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="setor" class="validate" name="setor"
+                            [ngModel]="patrimonioEdit.setor">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let setor of setores | async" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Setor</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst" [ngModel]="patrimonioEdit.areainst | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst"
+                            [ngModel]="patrimonioEdit.areainst | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let area of areainst | async" [value]="area.nome | uppercase">{{area.nome | uppercase}}</option>
                     </select>
@@ -79,18 +84,21 @@
                         <label for="numNotaFiscal">nº NF</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedor" [ngModel]="patrimonioEdit.fornecedor | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedor"
+                            [ngModel]="patrimonioEdit.fornecedor | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let forn of fornecedores | async" [value]="forn.nome | uppercase">{{forn.nome | uppercase}}</option>
                     </select>
                         <label for="tipo">Fornecedor</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <input type="text" placeholder="Data de Aquisiçao" id="dataAquisicao" class="validate" materialize="pickadate" [materializeActions]="actions" [materializeParams]="paramsDatePicker" name="dataAquisicao" [ngModel]="patrimonioEdit.dataAquisicao">
+                        <input type="text" placeholder="Data de Aquisiçao" id="dataAquisicao" class="datepicker validate" materialize="pickadate"
+                            [materializeActions]="actions" [materializeParams]="paramsDatePicker" name="dataAquisicao" [ngModel]="patrimonioEdit.dataAquisicao">
                         <label for="dataAquisicao">Data de Aquisição</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autor" [ngModel]="patrimonioEdit.autor | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autor"
+                            [ngModel]="patrimonioEdit.autor | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let autor of autores | async" [value]="autor.nome | uppercase">{{autor.nome | uppercase}}</option>
                     </select>
@@ -104,8 +112,33 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
             <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmit(f)">Atualizar</a>
         </div>
     </div>
+
+    <!--Modal Nota  -->
+     <!-- <div id="modalNota" class="modal modal-fixed-footer" materialize="modalNota" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalNota">
+        <div class="modal-content">
+            <h4>{{patrimonioEdit.numNotaFiscal}}</h4>
+            <div class="row">
+                <form #fNota="ngForm" (ngSubmit)="onSubmitNota(fNota)" class="col s12">
+                    <input *ngIf="patrimonioEdit.ativo != undefined" type="hidden" name="ativo" [ngModel]="patrimonioEdit.ativo">
+                    <div class="row file-field input-field">
+                        <div class="btn">
+                            <span>File</span>
+                            <input type="file" name="nota" (change)="onFileSelection($event)">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-green btn blue" (click)="closeModalNota()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmitNota(fNota)">Atualizar</a>
+        </div>
+    </div>  -->
 </div>

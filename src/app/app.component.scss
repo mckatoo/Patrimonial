@@ -6,4 +6,12 @@ nav {
     background: -webkit-linear-gradient(top, #f98a05 0%, #fa9d26 100%);
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, #f98a05 0%, #fa9d26 100%);
+    .brand-logo {
+        background-image: url('../assets/imagens/navbar-brand.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 316px;
+        background-size: 200px;
+        height: 64px;
+    }
 }
