@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MaterializeAction } from 'angular2-materialize';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-controle-patrimonial',
@@ -19,6 +20,7 @@ export class ControlePatrimonialComponent implements OnInit {
   fornecedores: FirebaseListObservable<any>;
   autores: FirebaseListObservable<any>;
   modalActions = new EventEmitter<string | MaterializeAction>();
+  modalNota = new EventEmitter<string | MaterializeAction>();
   actions = new EventEmitter<string | MaterializeAction>();
   paramsDatePicker = [{
     format: 'dd/mm/yyyy',
@@ -49,6 +51,8 @@ export class ControlePatrimonialComponent implements OnInit {
     "setor": "",
     "tipo": ""
   };
+  storageRef = firebase.storage().ref();
+  nota: string;
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -67,10 +71,6 @@ export class ControlePatrimonialComponent implements OnInit {
   ngOnInit() {
   }
 
-  onFileSelection(e) {
-    console.log(e.target.files[0].name)
-  }
-
   openModal(data) {
     if (data != null) {
       this.patrimonioEdit = data;
@@ -85,22 +85,21 @@ export class ControlePatrimonialComponent implements OnInit {
     this.limpar();
     this.modalActions.emit({ action: 'modal', params: ['close'] });
 }
-  
-  // openModalNota(data) {
-  //   if (data != null) {
-  //     this.patrimonioEdit = data;
-  //     this.modalNota.emit({ action: 'modalNota', params: ['open'] });
-  //   } else {
-  //     this.limpar();
-  //     this.modalNota.emit({ action: 'modalNota', params: ['open'] });
-  //   }
-  // }
-  
-  // closeModalNota() {
-  //   this.limpar();
-  //   this.modalNota.emit({ action: 'modalNota', params: ['close'] });
-  // }
 
+  openModalNota(data) {
+    if (data != null) {
+      this.patrimonioEdit = data;
+      this.modalNota.emit({ action: 'modal', params: ['open'] });
+    } else {
+      this.limpar();
+      this.modalNota.emit({ action: 'modal', params: ['open'] });
+    }
+  }
+
+  closeModalNota() {
+    this.modalNota.emit({ action: 'modal', params: ['close'] });
+}
+  
   onSubmit(data) {
     if (this.patrimonioEdit.$key != undefined) {
       this.patrimonios.update(this.patrimonioEdit.$key, data.value);
@@ -112,13 +111,9 @@ export class ControlePatrimonialComponent implements OnInit {
   }
   
   onSubmitNota(data) {
-    if (this.patrimonioEdit.$key != undefined) {
-      this.patrimonios.update(this.patrimonioEdit.$key, data.value);
-      this.limpar();
-    } else {
-      this.patrimonios.push(data.value);
-      this.limpar();
-    }
+    console.log(data.value);
+    
+    // this.storageRef.child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));
   }
 
   limpar() {
