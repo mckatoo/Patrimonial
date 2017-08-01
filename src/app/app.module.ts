@@ -24,7 +24,7 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
     LoginComponent,
     ControlePatrimonialComponent,
     UsuariosComponent,
-    PatrimonioDetalheComponent
+    PatrimonioDetalheComponent,
   ],
   imports: [
     BrowserModule,

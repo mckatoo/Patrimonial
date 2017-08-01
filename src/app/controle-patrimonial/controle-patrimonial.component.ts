@@ -36,26 +36,9 @@ export class ControlePatrimonialComponent implements OnInit {
     weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
     selectYears: 15,
   }];
-  dateOptions = [{
-    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-    weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-    today: 'Hoje',
-    clear: 'Limpar',
-    close: 'Pronto',
-    labelMonthNext: 'Próximo mês',
-    labelMonthPrev: 'Mês anterior',
-    labelMonthSelect: 'Selecione um mês',
-    labelYearSelect: 'Selecione um ano',
-    format: 'dd/mm/yyyy',
-    editable: true,
-    closeOnSelect: true,
-    selectMonths: true
-  }];
   patrimonioEdit: any = {
     "areainst": "",
-    "ativo": "",
+    "ativo": "s",
     "autor": "",
     "dataAquisicao": "",
     "descr": "",
@@ -66,28 +49,6 @@ export class ControlePatrimonialComponent implements OnInit {
     "setor": "",
     "tipo": ""
   };
-
-  // private dateOptions = this.getDefaultPickaOption();
-
-  // private getDefaultPickaOption(): any {
-  //   return {
-  //     monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-  //     monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-  //     weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-  //     weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-  //     today: 'Hoje',
-  //     clear: 'Limpar',
-  //     close: 'Pronto',
-  //     labelMonthNext: 'Próximo mês',
-  //     labelMonthPrev: 'Mês anterior',
-  //     labelMonthSelect: 'Selecione um mês',
-  //     labelYearSelect: 'Selecione um ano',
-  //     format: 'dd/mm/yyyy',
-  //     editable: true,
-  //     closeOnSelect: true,
-  //     selectYears: 15
-  //   };
-  // }
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -135,7 +96,7 @@ export class ControlePatrimonialComponent implements OnInit {
     this.patrimonioEdit.key = "";
     this.patrimonioEdit = {
       "areainst": "",
-      "ativo": "",
+      "ativo": "s",
       "autor": "",
       "dataAquisicao": "",
       "descr": "",
