@@ -51,8 +51,11 @@ export class ControlePatrimonialComponent implements OnInit {
     "setor": "",
     "tipo": ""
   };
-  storageRef = firebase.storage().ref();
-  nota: string;
+  notaEdit: any = {
+    "numNotaFiscal": "",
+    "arquivo": ""
+  }
+  progresso = "0%";
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -84,22 +87,17 @@ export class ControlePatrimonialComponent implements OnInit {
   closeModal() {
     this.limpar();
     this.modalActions.emit({ action: 'modal', params: ['close'] });
-}
+  }
 
   openModalNota(data) {
-    if (data != null) {
-      this.patrimonioEdit = data;
-      this.modalNota.emit({ action: 'modal', params: ['open'] });
-    } else {
-      this.limpar();
-      this.modalNota.emit({ action: 'modal', params: ['open'] });
-    }
+    this.notaEdit.numNotaFiscal = data;
+    this.modalNota.emit({ action: 'modal', params: ['open'] });
   }
 
   closeModalNota() {
     this.modalNota.emit({ action: 'modal', params: ['close'] });
-}
-  
+  }
+
   onSubmit(data) {
     if (this.patrimonioEdit.$key != undefined) {
       this.patrimonios.update(this.patrimonioEdit.$key, data.value);
@@ -109,11 +107,26 @@ export class ControlePatrimonialComponent implements OnInit {
       this.limpar();
     }
   }
-  
+
   onSubmitNota(data) {
-    console.log(data.value);
-    
-    // this.storageRef.child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));
+    console.log('notasFiscais/' + this.notaEdit.numNotaFiscal);
+    console.log(data);
+    let storageRef = firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal);
+    // console.log(data.value.nota);
+    // let task = storageRef.put(data.value.nota);
+    // task.on('state_changed',
+    //   function progress(snapshot) {
+    //     let percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //     this.progresso = percente + "%";
+    //   },
+    //   function error(err) {
+
+    //   },
+    //   function complete() {
+
+    //   }
+    // );
+    // firebase.storage().ref().child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));
   }
 
   limpar() {
@@ -131,6 +144,10 @@ export class ControlePatrimonialComponent implements OnInit {
       "setor": "",
       "tipo": ""
     };
+    this.notaEdit = {
+      "numNotaFiscal": "",
+      "arquivo": ""
+    }
   }
 
 }

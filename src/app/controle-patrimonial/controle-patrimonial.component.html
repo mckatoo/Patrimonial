@@ -113,17 +113,19 @@
     <!--Modal Nota  -->
     <div id="modalNota" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalNota">
         <div class="modal-content">
-            <h4>{{patrimonioEdit.numNotaFiscal}}</h4>
+            <h4>{{notaEdit.numNotaFiscal}}</h4>
             <div class="row">
                 <form #fNota="ngForm" (ngSubmit)="onSubmitNota(fNota)" class="col s12">
-                    <input *ngIf="patrimonioEdit.ativo != undefined" type="hidden" name="ativo" [ngModel]="patrimonioEdit.ativo">
                     <div class="row file-field input-field">
                         <div class="btn">
                             <span>File</span>
-                            <input type="file" name="nota" ngModel>
+                            <input type="file" value="upload" name="nota" ngModel>
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
+                        </div>
+                        <div class="progress">
+                            <div class="determinate" style="width: '{{progresso}}'"></div>
                         </div>
                     </div>
                 </form>
