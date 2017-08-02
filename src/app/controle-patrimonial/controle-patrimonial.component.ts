@@ -56,7 +56,7 @@ export class ControlePatrimonialComponent implements OnInit {
     "arquivo": ""
   }
   selectedFiles: FileList;
-  progresso = "0%";
+  progresso = "0";
 
 
   constructor(private db: AngularFireDatabase) {
@@ -122,12 +122,13 @@ export class ControlePatrimonialComponent implements OnInit {
       function progress(snapshot) {
         let percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         this.progresso = percente;
+        console.log(percente);
       },
       function error(err) {
 
       },
       function complete() {
-
+        console.log('Completo');
       }
     );
     // firebase.storage().ref().child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));

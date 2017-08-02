@@ -115,7 +115,7 @@
         <div class="modal-content">
             <h4>{{notaEdit.numNotaFiscal}}</h4>
             <div class="row">
-                <form #fNota="ngForm" (ngSubmit)="onSubmitNota(fNota)" class="col s12">
+                <form #fNota="ngForm" (ngSubmit)="onSubmitNota()" class="col s12">
                     <div class="row file-field input-field">
                         <div class="btn">
                             <span>Arquivo</span>
@@ -123,13 +123,13 @@
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
-                            <button class="btn waves-effect waves-orange blue" (click)="onSubmitNota()">
+                            <button class="btn waves-effect waves-orange blue right" (click)="onSubmitNota()">
                                 <i class="material-icons right">send</i>
                                 Enviar
                             </button>
                         </div>
                         <div class="progress">
-                            <div class="determinate" [ngStyle]="{'width': progresso + '%'}"></div>
+                             <div class="determinate" [ngStyle]="{'width': progresso + '%'}"></div> 
                         </div>
                     </div>
                 </form>
