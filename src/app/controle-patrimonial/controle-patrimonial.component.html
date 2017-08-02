@@ -118,23 +118,25 @@
                 <form #fNota="ngForm" (ngSubmit)="onSubmitNota(fNota)" class="col s12">
                     <div class="row file-field input-field">
                         <div class="btn">
-                            <span>File</span>
-                            <input type="file" value="upload" name="nota" ngModel>
+                            <span>Arquivo</span>
+                            <input type="file" value="upload" name="nota" (change)="detectFiles($event)">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
+                            <button class="btn waves-effect waves-orange blue" (click)="onSubmitNota()">
+                                <i class="material-icons right">send</i>
+                                Enviar
+                            </button>
                         </div>
                         <div class="progress">
-                            <div class="determinate" style="width: '{{progresso}}'"></div>
+                            <div class="determinate" [ngStyle]="{'width': progresso + '%'}"></div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModalNota()">Fechar</a>
-            <a *ngIf="patrimonioEdit.$key == undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmitNota(fNota)">Cadastrar</a>
-            <a *ngIf="patrimonioEdit.$key != undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmitNota(fNota)">Atualizar</a>
+            <a class="modal-action modal-close waves-effect waves-orange btn blue" (click)="closeModalNota()">Fechar</a>
         </div>
     </div>
 </div>

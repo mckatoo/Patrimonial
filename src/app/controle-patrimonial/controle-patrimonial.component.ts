@@ -55,7 +55,9 @@ export class ControlePatrimonialComponent implements OnInit {
     "numNotaFiscal": "",
     "arquivo": ""
   }
+  selectedFiles: FileList;
   progresso = "0%";
+
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -72,6 +74,10 @@ export class ControlePatrimonialComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  detectFiles(event){
+    this.selectedFiles = event.target.files;
   }
 
   openModal(data) {
@@ -108,24 +114,22 @@ export class ControlePatrimonialComponent implements OnInit {
     }
   }
 
-  onSubmitNota(data) {
-    console.log('notasFiscais/' + this.notaEdit.numNotaFiscal);
-    console.log(data);
+  onSubmitNota() {
+    let file = this.selectedFiles.item(0);
     let storageRef = firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal);
-    // console.log(data.value.nota);
-    // let task = storageRef.put(data.value.nota);
-    // task.on('state_changed',
-    //   function progress(snapshot) {
-    //     let percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     this.progresso = percente + "%";
-    //   },
-    //   function error(err) {
+    let task = storageRef.put(file);
+    task.on('state_changed',
+      function progress(snapshot) {
+        let percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.progresso = percente;
+      },
+      function error(err) {
 
-    //   },
-    //   function complete() {
+      },
+      function complete() {
 
-    //   }
-    // );
+      }
+    );
     // firebase.storage().ref().child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));
   }
 
