@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -56,8 +57,9 @@ export class ControlePatrimonialComponent implements OnInit {
     "arquivo": ""
   }
   selectedFiles: FileList;
-  progresso = "0";
-
+  progresso: Observable<string>;
+  downloadNota;
+  msgUpload;
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -76,7 +78,26 @@ export class ControlePatrimonialComponent implements OnInit {
   ngOnInit() {
   }
 
-  detectFiles(event){
+  imprimirNota(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+          //........Customized style.......
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+}
+
+  detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
 
@@ -120,18 +141,20 @@ export class ControlePatrimonialComponent implements OnInit {
     let task = storageRef.put(file);
     task.on('state_changed',
       function progress(snapshot) {
-        let percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        this.progresso = percente;
-        console.log(percente);
+        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(this.progresso);
       },
       function error(err) {
-
+        this.msgUpload = err;
       },
       function complete() {
-        console.log('Completo');
+        this.msgUpload = 'Upload realizado com sucesso!';
       }
     );
-    // firebase.storage().ref().child('notasFiscais/image.png').getDownloadURL().then(url => console.log(url));
+    firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal)
+      .getDownloadURL().then(url => {
+        this.downloadNota = url;
+      });
   }
 
   limpar() {

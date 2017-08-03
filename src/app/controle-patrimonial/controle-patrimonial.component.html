@@ -115,28 +115,45 @@
         <div class="modal-content">
             <h4>{{notaEdit.numNotaFiscal}}</h4>
             <div class="row">
-                <form #fNota="ngForm" (ngSubmit)="onSubmitNota()" class="col s12">
-                    <div class="row file-field input-field">
-                        <div class="btn">
-                            <span>Arquivo</span>
-                            <input type="file" value="upload" name="nota" (change)="detectFiles($event)">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                            <button class="btn waves-effect waves-orange blue right" (click)="onSubmitNota()">
-                                <i class="material-icons right">send</i>
-                                Enviar
-                            </button>
-                        </div>
-                        <div class="progress">
-                             <div class="determinate" [ngStyle]="{'width': progresso + '%'}"></div> 
+                <form #fNota="ngForm" (ngSubmit)="onSubmitNota();fNota.reset" class="col s12">
+                    <div class="row">
+                        <div class="file-field input-field col l12">
+                            <div class="btn">
+                                <span>Arquivo</span>
+                                <input type="file" value="upload" name="nota" (change)="detectFiles($event)">
+                            </div>
+                            <div class="file-path-wrapper col l6">
+                                <input class="file-path validate" type="text">
+                            </div>
+                            <button class="btn waves-effect waves-orange blue right" (click)="onSubmitNota();fNota.reset"><i class="material-icons right">send</i>Enviar</button>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="progress">
+                            <div class="determinate" [style]="{'width': progresso+ '%'}"></div>
+                        </div>
+                    </div>
+                    {{progresso}}%
                 </form>
+            </div>
+            <div class="row" *ngIf="downloadNota">
+                <div class="col s12 m7">
+                    <div class="card">
+                        <div class="card-image">
+                            <div id="print-section">
+                                <img [src]="downloadNota" [alt]="notaEdit?.numNotaFiscal">
+                            </div>
+                            <span class="card-title">
+                            <a [href]="downloadNota" [download]="notaEdit?.numNotaFiscal" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>
+                            <button class="btn-floating btn-large waves-effect waves-light blue" (click)="imprimirNota()"><i class="material-icons">print</i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-orange btn blue" (click)="closeModalNota()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-orange btn blue" (click)="closeModalNota();fNota.reset">Fechar</a>
         </div>
     </div>
 </div>
