@@ -57,9 +57,10 @@ export class ControlePatrimonialComponent implements OnInit {
     "arquivo": ""
   }
   selectedFiles: FileList;
-  progresso: Observable<string>;
+  progresso: number;
   downloadNota;
   msgUpload;
+  private uploadTask: firebase.storage.UploadTask;
 
   constructor(private db: AngularFireDatabase) {
     this.tipos = this.db.list('/tipos');
@@ -101,6 +102,47 @@ export class ControlePatrimonialComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
+  carrega(vl){
+    this.progresso = vl;
+  }
+
+  uploadNota() {
+    let file = this.selectedFiles.item(0);
+    // let storageRef = firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal);
+    let storageRef = firebase.storage().ref();
+    // let task = storageRef.put(file);
+    this.uploadTask = storageRef.child(`notasFiscais/${this.notaEdit.numNotaFiscal}`).put(file);
+    this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      },
+      (error) => {
+        this.msgUpload = error
+      },
+      () => {
+        this.downloadNota = this.uploadTask.snapshot.downloadURL
+        // gravar dados no banco sobre a nota.
+      }
+    );
+    // task.on('state_changed',
+    //   function progress(snapshot) {
+    //     var percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    //     this.progresso = percente;
+    //     console.log(this.progresso);
+    //   },
+    //   function error(err) {
+    //     this.msgUpload = err;
+    //   },
+    //   function complete() {
+    //     this.msgUpload = 'Upload realizado com sucesso!';
+    //   }
+    // );
+    // firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal)
+    //   .getDownloadURL().then(url => {
+    //     this.downloadNota = url;
+    //   });
+  }
+
   openModal(data) {
     if (data != null) {
       this.patrimonioEdit = data;
@@ -133,28 +175,6 @@ export class ControlePatrimonialComponent implements OnInit {
       this.patrimonios.push(data.value);
       this.limpar();
     }
-  }
-
-  onSubmitNota() {
-    let file = this.selectedFiles.item(0);
-    let storageRef = firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal);
-    let task = storageRef.put(file);
-    task.on('state_changed',
-      function progress(snapshot) {
-        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log(this.progresso);
-      },
-      function error(err) {
-        this.msgUpload = err;
-      },
-      function complete() {
-        this.msgUpload = 'Upload realizado com sucesso!';
-      }
-    );
-    firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal)
-      .getDownloadURL().then(url => {
-        this.downloadNota = url;
-      });
   }
 
   limpar() {

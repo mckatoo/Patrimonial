@@ -105,8 +105,8 @@
         </div>
         <div class="modal-footer">
             <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
-            <a *ngIf="patrimonioEdit.$key == undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmitNota(fNota)">Cadastrar</a>
-            <a *ngIf="patrimonioEdit.$key != undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmitNota(fNota)">Atualizar</a>
+            <a *ngIf="patrimonioEdit.$key == undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="uploadNota(f)">Cadastrar</a>
+            <a *ngIf="patrimonioEdit.$key != undefined" class="modal-action modal-close waves-effect waves-green btn blue" (click)="uploadNota(f)">Atualizar</a>
         </div>
     </div>
 
@@ -115,7 +115,7 @@
         <div class="modal-content">
             <h4>{{notaEdit.numNotaFiscal}}</h4>
             <div class="row">
-                <form #fNota="ngForm" (ngSubmit)="onSubmitNota();fNota.reset" class="col s12">
+                 <form #fNota="ngForm" (ngSubmit)="uploadNota();fNota.reset" class="col s12"> 
                     <div class="row">
                         <div class="file-field input-field col l12">
                             <div class="btn">
@@ -125,16 +125,16 @@
                             <div class="file-path-wrapper col l6">
                                 <input class="file-path validate" type="text">
                             </div>
-                            <button class="btn waves-effect waves-orange blue right" (click)="onSubmitNota();fNota.reset"><i class="material-icons right">send</i>Enviar</button>
+                            <button class="btn waves-effect waves-orange blue right" (click)="uploadNota()"><i class="material-icons right">send</i>Enviar</button>
                         </div>
                     </div>
+                 </form>  
                     <div class="row">
                         <div class="progress">
-                            <div class="determinate" [style]="{'width': progresso+ '%'}"></div>
+                            <div class="determinate" [style.width.%]="progresso"></div>
                         </div>
+                            <h5 *ngIf="progresso" class="center-align">{{progresso | number:'1.0-0'}}%</h5>
                     </div>
-                    {{progresso}}%
-                </form>
             </div>
             <div class="row" *ngIf="downloadNota">
                 <div class="col s12 m7">
@@ -153,7 +153,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-orange btn blue" (click)="closeModalNota();fNota.reset">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-orange btn blue" (click)="closeModalNota()">Fechar</a>
         </div>
     </div>
 </div>
