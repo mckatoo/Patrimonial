@@ -114,13 +114,13 @@ export class ControlePatrimonialComponent implements OnInit {
     this.uploadTask = storageRef.child(`notasFiscais/${this.notaEdit.numNotaFiscal}`).put(file);
     this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
-        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       (error) => {
-        this.msgUpload = error
+        this.msgUpload = error;
       },
       () => {
-        this.downloadNota = this.uploadTask.snapshot.downloadURL
+        this.downloadNota = this.uploadTask.snapshot.downloadURL;
         // gravar dados no banco sobre a nota.
       }
     );
