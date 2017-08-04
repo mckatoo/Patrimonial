@@ -115,7 +115,7 @@
         <div class="modal-content">
             <h4>{{notaEdit.numNotaFiscal}}</h4>
             <div class="row">
-                 <form #fNota="ngForm" (ngSubmit)="uploadNota();fNota.reset" class="col s12"> 
+                <form #fNota="ngForm" (ngSubmit)="uploadNota();fNota.reset" class="col s12">
                     <div class="row">
                         <div class="file-field input-field col l12">
                             <div class="btn">
@@ -128,23 +128,23 @@
                             <button class="btn waves-effect waves-orange blue right" (click)="uploadNota()"><i class="material-icons right">send</i>Enviar</button>
                         </div>
                     </div>
-                 </form>  
-                    <div class="row">
-                        <div class="progress">
-                            <div class="determinate" [style.width.%]="progresso"></div>
-                        </div>
-                            <h5 *ngIf="progresso" class="center-align">{{progresso | number:'1.0-0'}}%</h5>
+                </form>
+                <div class="row">
+                    <div class="progress">
+                        <div class="determinate" [style.width.%]="currentUpload?.progress"></div>
                     </div>
+                    <h5 class="center-align">{{currentUpload?.progress | number:'1.0-0'}}%</h5>
+                </div>
             </div>
-            <div class="row" *ngIf="downloadNota">
+            <div class="row">
                 <div class="col s12 m7">
                     <div class="card">
                         <div class="card-image">
                             <div id="print-section">
-                                <img [src]="downloadNota" [alt]="notaEdit?.numNotaFiscal">
+                                <img [src]="currentUpload?.url" [alt]="currentUpload?.name">
                             </div>
                             <span class="card-title">
-                            <a [href]="downloadNota" [download]="notaEdit?.numNotaFiscal" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>
+                            <a [href]="currentUpload?.url" [download]="currentUpload?.name" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>
                             <button class="btn-floating btn-large waves-effect waves-light blue" (click)="imprimirNota()"><i class="material-icons">print</i></button>
                             </span>
                         </div>

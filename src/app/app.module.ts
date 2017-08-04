@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { PatrimonioDetalheComponent } from './controle-patrimonial/patrimonio-detalhe/patrimonio-detalhe.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ControlePatrimonialComponent } from './controle-patrimonial/controle-patrimonial.component';
+import { UploadService } from './shared/upload.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

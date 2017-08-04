@@ -1,3 +1,5 @@
+import { UploadService } from './../shared/upload.service';
+import { Upload } from './../shared/upload';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -57,12 +59,13 @@ export class ControlePatrimonialComponent implements OnInit {
     "arquivo": ""
   }
   selectedFiles: FileList;
+  currentUpload: Upload;
   progresso: number;
   downloadNota;
   msgUpload;
   private uploadTask: firebase.storage.UploadTask;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private upSvc: UploadService) {
     this.tipos = this.db.list('/tipos');
     this.autores = this.db.list('/login');
     this.fornecedores = this.db.list('/fornecedores');
@@ -77,6 +80,16 @@ export class ControlePatrimonialComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+  
+  uploadNota() {
+    let file = this.selectedFiles.item(0);
+    this.currentUpload = new Upload(file);
+    this.upSvc.pushUpload(this.currentUpload);
   }
 
   imprimirNota(): void {
@@ -96,51 +109,10 @@ export class ControlePatrimonialComponent implements OnInit {
       </html>`
     );
     popupWin.document.close();
-}
-
-  detectFiles(event) {
-    this.selectedFiles = event.target.files;
   }
 
-  carrega(vl){
+  carrega(vl) {
     this.progresso = vl;
-  }
-
-  uploadNota() {
-    let file = this.selectedFiles.item(0);
-    // let storageRef = firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal);
-    let storageRef = firebase.storage().ref();
-    // let task = storageRef.put(file);
-    this.uploadTask = storageRef.child(`notasFiscais/${this.notaEdit.numNotaFiscal}`).put(file);
-    this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) => {
-        this.progresso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
-      (error) => {
-        this.msgUpload = error;
-      },
-      () => {
-        this.downloadNota = this.uploadTask.snapshot.downloadURL;
-        // gravar dados no banco sobre a nota.
-      }
-    );
-    // task.on('state_changed',
-    //   function progress(snapshot) {
-    //     var percente = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //     this.progresso = percente;
-    //     console.log(this.progresso);
-    //   },
-    //   function error(err) {
-    //     this.msgUpload = err;
-    //   },
-    //   function complete() {
-    //     this.msgUpload = 'Upload realizado com sucesso!';
-    //   }
-    // );
-    // firebase.storage().ref().child('notasFiscais/' + this.notaEdit.numNotaFiscal)
-    //   .getDownloadURL().then(url => {
-    //     this.downloadNota = url;
-    //   });
   }
 
   openModal(data) {

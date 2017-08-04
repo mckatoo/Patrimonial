@@ -5,9 +5,7 @@ import { ControlePatrimonialComponent } from './controle-patrimonial.component';
 import { PatrimonioDetalheComponent } from './patrimonio-detalhe/patrimonio-detalhe.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   declarations: [ControlePatrimonialComponent, PatrimonioDetalheComponent]
 })
 export class ControlePatrimonialModule { }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, AngularFireDatabase, FirebaseListObservable } from "angularfire2";
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
 import { Upload } from './upload';
 import * as firebase from 'firebase';
 
 @Injectable()
 export class UploadService {
 
-  constructor(private af: AngularFire, private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) { }
 
   private basePath: string = '/notasFiscais';
   private uploadTask: firebase.storage.UploadTask;
@@ -50,6 +50,4 @@ export class UploadService {
     let storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePath}/${name}`).delete()
   }
-}
-
 }
