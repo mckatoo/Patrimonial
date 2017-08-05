@@ -1,7 +1,7 @@
 import { UploadService } from './../shared/upload.service';
 import { Upload } from './../shared/upload';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
@@ -65,7 +65,6 @@ export class ControlePatrimonialComponent implements OnInit {
   msgUpload;
   notaFiscal;
   private uploadTask: firebase.storage.UploadTask;
-  queryNota;
 
   constructor(private db: AngularFireDatabase, private upSvc: UploadService) {
     this.tipos = this.db.list('/tipos');
@@ -84,6 +83,9 @@ export class ControlePatrimonialComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+  }
+
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   };
@@ -91,9 +93,9 @@ export class ControlePatrimonialComponent implements OnInit {
   getNotas(numNotaFiscal?) {
     this.db.list('/notasFiscais', {
       query: {
-        orderByChild:"name",
+        orderByChild: "name",
         equalTo: numNotaFiscal,
-        limitToLast:1
+        limitToLast: 1
       }
     }).subscribe(nota => {
       this.notaFiscal = nota;
@@ -103,7 +105,7 @@ export class ControlePatrimonialComponent implements OnInit {
   uploadNota() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload,this.notaEdit.numNotaFiscal);
+    this.upSvc.pushUpload(this.currentUpload, this.notaEdit.numNotaFiscal);
   };
 
   imprimirNota(): void {
