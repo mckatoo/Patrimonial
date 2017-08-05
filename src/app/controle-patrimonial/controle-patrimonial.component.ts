@@ -63,7 +63,9 @@ export class ControlePatrimonialComponent implements OnInit {
   progresso: number;
   downloadNota;
   msgUpload;
+  notaFiscal;
   private uploadTask: firebase.storage.UploadTask;
+  queryNota;
 
   constructor(private db: AngularFireDatabase, private upSvc: UploadService) {
     this.tipos = this.db.list('/tipos');
@@ -84,13 +86,25 @@ export class ControlePatrimonialComponent implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
-  }
-  
+  };
+
+  getNotas(numNotaFiscal?) {
+    this.db.list('/notasFiscais', {
+      query: {
+        orderByChild:"name",
+        equalTo: numNotaFiscal,
+        limitToLast:1
+      }
+    }).subscribe(nota => {
+      this.notaFiscal = nota;
+    });
+  };
+
   uploadNota() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload);
-  }
+    this.upSvc.pushUpload(this.currentUpload,this.notaEdit.numNotaFiscal);
+  };
 
   imprimirNota(): void {
     let printContents, popupWin;
@@ -109,11 +123,7 @@ export class ControlePatrimonialComponent implements OnInit {
       </html>`
     );
     popupWin.document.close();
-  }
-
-  carrega(vl) {
-    this.progresso = vl;
-  }
+  };
 
   openModal(data) {
     if (data != null) {
@@ -123,21 +133,22 @@ export class ControlePatrimonialComponent implements OnInit {
       this.limpar();
       this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
-  }
+  };
 
   closeModal() {
     this.limpar();
     this.modalActions.emit({ action: 'modal', params: ['close'] });
-  }
+  };
 
   openModalNota(data) {
     this.notaEdit.numNotaFiscal = data;
     this.modalNota.emit({ action: 'modal', params: ['open'] });
-  }
+    this.getNotas(data);
+  };
 
   closeModalNota() {
     this.modalNota.emit({ action: 'modal', params: ['close'] });
-  }
+  };
 
   onSubmit(data) {
     if (this.patrimonioEdit.$key != undefined) {
@@ -147,7 +158,7 @@ export class ControlePatrimonialComponent implements OnInit {
       this.patrimonios.push(data.value);
       this.limpar();
     }
-  }
+  };
 
   limpar() {
     this.patrimonioEdit.key = "";
@@ -168,6 +179,6 @@ export class ControlePatrimonialComponent implements OnInit {
       "numNotaFiscal": "",
       "arquivo": ""
     }
-  }
+  };
 
 }

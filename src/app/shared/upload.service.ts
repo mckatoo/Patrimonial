@@ -11,9 +11,16 @@ export class UploadService {
   private basePath: string = '/notasFiscais';
   private uploadTask: firebase.storage.UploadTask;
 
-  pushUpload(upload: Upload) {
+  pushUpload(upload: Upload, saveAs?) {
+    let nomeArquivo: string;
+    if (saveAs == undefined) {
+      nomeArquivo = upload.file.name;
+    } else {
+      nomeArquivo = saveAs;
+    }
+    
     let storageRef = firebase.storage().ref();
-    this.uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    this.uploadTask = storageRef.child(`${this.basePath}/${nomeArquivo}`).put(upload.file);
 
     this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
@@ -24,30 +31,30 @@ export class UploadService {
       },
       () => {
         upload.url = this.uploadTask.snapshot.downloadURL;
-        upload.name = upload.file.name;
+        upload.name = nomeArquivo;
         this.saveFileData(upload);
       }
     );
-  }
+  };
+
+  deleteUpload(upload: Upload) {
+    this.deleteFileData(upload.$key)
+      .then(() => {
+        this.deleteFileStorage(upload.name)
+      })
+      .catch(error => console.log(error))
+  };
 
   private saveFileData(upload: Upload) {
     this.db.list(`${this.basePath}/`).push(upload);
-  }
+  };
 
-    deleteUpload(upload: Upload) {
-    this.deleteFileData(upload.$key)
-    .then( () => {
-      this.deleteFileStorage(upload.name)
-    })
-    .catch(error => console.log(error))
-  }
-  
   private deleteFileData(key: string) {
     return this.db.list(`${this.basePath}/`).remove(key);
-  }
-  
-  private deleteFileStorage(name:string) {
+  };
+
+  private deleteFileStorage(name: string) {
     let storageRef = firebase.storage().ref();
     storageRef.child(`${this.basePath}/${name}`).delete()
-  }
+  };
 }
