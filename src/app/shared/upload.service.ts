@@ -18,7 +18,7 @@ export class UploadService {
     } else {
       nomeArquivo = saveAs;
     }
-    
+
     let storageRef = firebase.storage().ref();
     this.uploadTask = storageRef.child(`${this.basePath}/${nomeArquivo}`).put(upload.file);
 
