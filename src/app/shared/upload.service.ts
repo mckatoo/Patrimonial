@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database";
 import { Upload } from './upload';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UploadService {
@@ -46,7 +47,17 @@ export class UploadService {
   };
 
   private saveFileData(upload: Upload) {
-    this.db.list(`${this.basePath}/`).push(upload);
+    this.db.list('/notasFiscais',{
+      query: {
+        orderByChild: 'name',
+        equalTo: upload.name
+      }
+    }).subscribe(snapshot => {
+      if (snapshot.length >= 2) {
+        this.db.list('/notasFiscais').remove(snapshot[0].$key);
+      }
+    });
+    this.db.list(this.basePath + "/").push(upload);
   };
 
   private deleteFileData(key: string) {

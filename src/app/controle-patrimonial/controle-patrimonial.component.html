@@ -135,18 +135,17 @@
                     </div>
                     <h5 class="center-align">{{currentUpload?.progress | number:'1.0-0'}}%</h5>
                 </div>
-                <!-- <div class="row" *ngIf="currentUpload && currentUpload?.url != undefined"> -->
-                <div class="row" *ngIf="notaFiscal != ''">
+                  <div class="row" *ngIf="notaFiscal != ''">  
                     <div class="col s12 m7">
                         <div class="card">
-                            <div class="card-image">
+                            <div class="card-image" *ngFor="let nf of notaFiscal">
                                 <div id="print-section">
-                                    <p *ngFor="let nf of notaFiscal">
-                                        <img [src]="nf.url" [alt]="nf.name">
-                                    </p>
+                                     <p> 
+                                         <img [src]="nf.url" [alt]="nf.name"> 
+                                     </p> 
                                 </div>
                                 <span class="card-title">
-                            <a [href]="currentUpload?.url" [download]="currentUpload?.name" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>
+                            <a [href]="nf.url" [download]="nf.url" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>
 <button class="btn-floating btn-large waves-effect waves-light blue" (click)="imprimirNota()"><i class="material-icons">print</i></button>
                             </span>
                             </div>
