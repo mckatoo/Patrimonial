@@ -13,10 +13,11 @@ import { AngularFireModule } from 'angularfire2';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { PatrimonioDetalheComponent } from './controle-patrimonial/patrimonio-detalhe/patrimonio-detalhe.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ControlePatrimonialComponent } from './controle-patrimonial/controle-patrimonial.component';
 import { UploadService } from './shared/upload.service';
+import { ConfigComponent } from './config/config.component';
+import { TiposUsuariosComponent } from './config/tipos-usuarios/tipos-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UploadService } from './shared/upload.service';
     LoginComponent,
     ControlePatrimonialComponent,
     UsuariosComponent,
-    PatrimonioDetalheComponent,
+    ConfigComponent,
+    TiposUsuariosComponent
   ],
   imports: [
     BrowserModule,

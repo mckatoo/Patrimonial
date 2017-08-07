@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PatrimonioDetalheComponent } from './patrimonio-detalhe.component';
+import { SetoresComponent } from './setores.component';
 
-describe('PatrimonioDetalheComponent', () => {
-  let component: PatrimonioDetalheComponent;
-  let fixture: ComponentFixture<PatrimonioDetalheComponent>;
+describe('SetoresComponent', () => {
+  let component: SetoresComponent;
+  let fixture: ComponentFixture<SetoresComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PatrimonioDetalheComponent ]
+      declarations: [ SetoresComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PatrimonioDetalheComponent);
+    fixture = TestBed.createComponent(SetoresComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

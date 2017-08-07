@@ -22,10 +22,10 @@
             <tr *ngFor="let p of patrimonios | async">
                 <td class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" [attr.data-tooltip]="p.tipo | uppercase">{{p.tipo | uppercase | slice:0:5}}</td>
                 <td>{{p.numPlacaPatr}}</td>
-                <td class="pointer" (click)="openModal(p)">{{p.descr | uppercase}}</td>
+                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar" (click)="openModal(p)">{{p.descr | uppercase}}</td>
                 <td>{{p.setor | uppercase}}</td>
                 <td nowrap>{{p.areainst | uppercase}}</td>
-                <td class="pointer" (click)="openModalNota(p.numNotaFiscal)">{{p.numNotaFiscal}}</td>
+                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Inserir ou Atualizar a Nota-Fiscal" (click)="openModalNota(p.numNotaFiscal)">{{p.numNotaFiscal}}</td>
                 <td>{{p.fornecedor | uppercase}}</td>
                 <td>{{p.dataAquisicao}}</td>
                 <td>{{p.autor | uppercase}}</td>
@@ -135,14 +135,14 @@
                     </div>
                     <h5 class="center-align">{{currentUpload?.progress | number:'1.0-0'}}%</h5>
                 </div>
-                  <div class="row" *ngIf="notaFiscal != ''">  
+                <div class="row" *ngIf="notaFiscal != ''">
                     <div class="col s12 m7">
                         <div class="card">
                             <div class="card-image" *ngFor="let nf of notaFiscal">
                                 <div id="print-section">
-                                     <p> 
-                                         <img [src]="nf.url" [alt]="nf.name"> 
-                                     </p> 
+                                    <p>
+                                        <img [src]="nf.url" [alt]="nf.name">
+                                    </p>
                                 </div>
                                 <span class="card-title">
                             <a [href]="nf.url" [download]="nf.url" class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">file_download</i></a>

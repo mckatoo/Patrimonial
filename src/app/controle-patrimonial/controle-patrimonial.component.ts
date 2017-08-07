@@ -5,7 +5,6 @@ import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { Sanitizer } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MaterializeAction } from 'angular2-materialize';
 import * as firebase from 'firebase';
