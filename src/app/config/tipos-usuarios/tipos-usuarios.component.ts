@@ -17,7 +17,7 @@ export class TiposUsuariosComponent implements OnInit {
 
   constructor(private db: AngularFireDatabase) { }
 
-    openModalUsuario(data?) {
+  openModalUsuario(data?) {
     if (data == undefined) {
       this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {

@@ -1,42 +1,40 @@
-<div class="row">
-    <div class="card-panel col l6 m6 s12">
-        <div class="title z-depth-1 white-text">
-            <h4>Tipos de Usuarios</h4><a class="waves-effect waves-light btn blue right title-btn">Novo</a>
-        </div>
-        <table class="bordered highlight">
-            <thead>
-                <tr>
-                    <th nowrap>Tipo</th>
-                    <th nowrap>Usuários</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>tipo</td>
-                    <td>lista de usuarios</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="card-panel col l6 m6 s12">
+    <div class="title z-depth-1 white-text">
+        <h4>Tipos de Usuarios</h4><a class="waves-effect waves-light btn blue right title-btn">Novo</a>
+    </div>
+    <table class="bordered highlight">
+        <thead>
+            <tr>
+                <th nowrap>Tipo</th>
+                <th nowrap>Usuários</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>tipo</td>
+                <td>lista de usuarios</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <!-- Modal -->
-        <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
-            <div class="modal-content">
-                <h4>Novo Tipo de Usuário</h4>
-                <div class="row">
-                    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
+    <!-- Modal -->
+    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+        <div class="modal-content">
+            <h4>Novo Tipo de Usuário</h4>
+            <div class="row">
+                <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
+                    <div class="input-field col s12 l6">
                         <div class="input-field col s12 l6">
-                            <div class="input-field col s12 l6">
-                                <input type="text" placeholder="Tipo de Usuário" id="nome" class="validate" name="tipo" [ngModel]="editarTipo.tipo | uppercase">
-                                <label for="tipo">Tipo</label>
-                            </div>
+                            <input type="text" placeholder="Tipo de Usuário" id="nome" class="validate" name="tipo" [ngModel]="editarTipo.tipo | uppercase">
+                            <label for="tipo">Tipo</label>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <a class="waves-effect waves-green btn-flat" (click)="closeModalUsuario()">Fechar</a>
-                <a class="modal-action modal-close waves-effect waves-green btn-flat">Cadastrar</a>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="waves-effect waves-green btn-flat" (click)="closeModalUsuario()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Cadastrar</a>
         </div>
     </div>
 </div>

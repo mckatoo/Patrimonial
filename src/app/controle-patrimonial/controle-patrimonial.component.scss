@@ -1,36 +1,3 @@
-.table {
-    display: table;
-}
-
-.pointer {
-    cursor: pointer;
-    font-weight: bolder;
-    background-color: #fa9d26;
-}
-
-.title {
-    background: #f98a05;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #f98a05 0%, #fa9d26 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #f98a05 0%, #fa9d26 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #f98a05 0%, #fa9d26 100%);
-    padding: 2px 6px 2px 6px;
-    height: 50px;
-    h4 {
-        position: relative;
-        top: -12px;
-    }
-    .title-btn {
-        top: -62px;
-    }
-}
-
 .notaFiscal {
     max-width: 600px;
-}
-
-.btn-float {
-    right: 56px;
 }

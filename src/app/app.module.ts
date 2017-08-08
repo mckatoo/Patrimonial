@@ -18,6 +18,8 @@ import { ControlePatrimonialComponent } from './controle-patrimonial/controle-pa
 import { UploadService } from './shared/upload.service';
 import { ConfigComponent } from './config/config.component';
 import { TiposUsuariosComponent } from './config/tipos-usuarios/tipos-usuarios.component';
+import { InstitutoComponent } from './config/instituto/instituto.component';
+import { SetoresComponent } from './config/setores/setores.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { TiposUsuariosComponent } from './config/tipos-usuarios/tipos-usuarios.c
     ControlePatrimonialComponent,
     UsuariosComponent,
     ConfigComponent,
-    TiposUsuariosComponent
+    TiposUsuariosComponent,
+    InstitutoComponent,
+    SetoresComponent
   ],
   imports: [
     BrowserModule,

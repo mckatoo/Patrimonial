@@ -8,6 +8,6 @@ import { InstitutoComponent } from './instituto/instituto.component';
   imports: [
     CommonModule
   ],
-  declarations: [SetoresComponent, TiposUsuariosComponent, InstitutoComponent]
+  declarations: [SetoresComponent, TiposUsuariosComponent, InstitutoComponent, ]
 })
 export class ConfigModule { }
