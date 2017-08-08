@@ -6,13 +6,13 @@
         <thead>
             <tr>
                 <th nowrap>Nome</th>
-                <th nowrap>Logotipo</th>
+                <th nowrap class="center-align">Apagar</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>asjdfkliesi</td>
-                <td>lissdfsdos</td>
+            <tr *ngFor="let setor of setores | async">
+                <td>{{setor.nome}}</td>
+                <td class="center-align"><a href="#" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons small">delete</i></a></td>
             </tr>
         </tbody>
     </table>
@@ -33,8 +33,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Fechar</a>
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue">Cadastrar</a>
         </div>
     </div>
 </div>

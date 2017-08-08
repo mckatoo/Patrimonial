@@ -1,6 +1,6 @@
 <div class="card-panel col l6 m6 s12">
     <div class="title z-depth-1 white-text">
-        <h4>Tipos de Usuarios</h4><a class="waves-effect waves-light btn blue right title-btn">Novo</a>
+        <h4>Tipos de Usuarios</h4><a class="waves-effect waves-light btn blue right title-btn" (click)="openModal()">Novo</a>
     </div>
     <table class="bordered highlight">
         <thead>
@@ -33,8 +33,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="waves-effect waves-green btn-flat" (click)="closeModalUsuario()">Fechar</a>
-            <a class="modal-action modal-close waves-effect waves-green btn-flat">Cadastrar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue">Cadastrar</a>
         </div>
     </div>
 </div>

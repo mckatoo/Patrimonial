@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
@@ -11,8 +11,11 @@ import { MaterializeAction } from 'angular2-materialize';
 export class SetoresComponent implements OnInit {
 
   modalActions = new EventEmitter<string | MaterializeAction>();
+  setores:FirebaseListObservable<any>;
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) {
+    this.setores = db.list('setores/');
+  }
 
   ngOnInit() {
   }
