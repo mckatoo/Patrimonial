@@ -1,3 +1,4 @@
+import { FirebaseListObservable } from 'angularfire2/database';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -10,23 +11,36 @@ import { MaterializeAction } from 'angular2-materialize';
 })
 export class TiposUsuariosComponent implements OnInit {
 
+  tiposUsuarios: FirebaseListObservable<any>;
   modalActions = new EventEmitter<string | MaterializeAction>();
   editarTipo = {
     "tipo": "",
   };
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase) {
+    this.tiposUsuarios = db.list("tiposUsuarios/");
+  }
 
-  openModal(data?) {
-    if (data == undefined) {
+  onSubmit(form) {
+    this.tiposUsuarios.push(form.value);
+    this.closeModal(form);
+  };
+
+  apagar(key:string){
+    this.tiposUsuarios.remove(key);
+  }
+
+  openModal(form?) {
+    if (form == undefined) {
       this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {
       console.log("editar");
       // this.modalActions.emit({ action: "modal", params: ['open'] });
     }
   }
-  closeModal() {
+  closeModal(form?) {
     this.modalActions.emit({ action: "modal", params: ['close'] });
+    form.reset();
   }
 
   ngOnInit() {

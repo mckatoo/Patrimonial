@@ -19,17 +19,27 @@ export class SetoresComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  onSubmit(form) {
+    this.setores.push(form.value);
+    this.closeModal(form);
+  };
 
-  openModal(data?) {
-    if (data == undefined) {
+  apagar(key:string){
+    this.setores.remove(key);
+  }
+
+  openModal(form?) {
+    if (form == undefined) {
       this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {
       console.log("editar");
       // this.modalActions.emit({ action: "modal", params: ['open'] });
     }
   }
-  closeModal() {
+  closeModal(form?) {
     this.modalActions.emit({ action: "modal", params: ['close'] });
+    form.reset();
   }
 
 }

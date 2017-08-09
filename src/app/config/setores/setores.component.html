@@ -12,29 +12,29 @@
         <tbody>
             <tr *ngFor="let setor of setores | async">
                 <td>{{setor.nome}}</td>
-                <td class="center-align"><a href="#" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons small">delete</i></a></td>
+                <td class="center-align"><button class="btn-floating btn-small waves-effect waves-light red" (click)="apagar(setor.$key)"><i class="material-icons small">delete</i></button></td>
             </tr>
         </tbody>
     </table>
 
     <!-- Modal -->
-    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
         <div class="modal-content">
             <h4>Novo Setor</h4>
             <div class="row">
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
                     <div class="input-field col s12 l6">
                         <div class="input-field col s12 l6">
-                            <input type="text" placeholder="Setor" id="setor" class="validate" name="setor">
-                            <label for="setor">Setor</label>
+                            <input type="text" placeholder="Setor" id="nome" class="validate" name="nome" ngModel>
+                            <label for="nome">Setor</label>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
-            <a class="modal-action modal-close waves-effect waves-green btn blue">Cadastrar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal(f)">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmit(f)">Cadastrar</a>
         </div>
     </div>
 </div>
