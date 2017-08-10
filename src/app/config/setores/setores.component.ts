@@ -11,7 +11,7 @@ import { MaterializeAction } from 'angular2-materialize';
 export class SetoresComponent implements OnInit {
 
   modalActions = new EventEmitter<string | MaterializeAction>();
-  setores:FirebaseListObservable<any>;
+  setores: FirebaseListObservable<any>;
 
   constructor(private db: AngularFireDatabase) {
     this.setores = db.list('setores/');
@@ -19,14 +19,16 @@ export class SetoresComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   onSubmit(form) {
     this.setores.push(form.value);
     this.closeModal(form);
   };
 
-  apagar(key:string){
-    this.setores.remove(key);
+  apagar(key: string) {
+    if (confirm("Deseja realmente apagar este setor?")) {
+      this.setores.remove(key);
+    }
   }
 
   openModal(form?) {

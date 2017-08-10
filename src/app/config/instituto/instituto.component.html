@@ -7,34 +7,45 @@
             <tr>
                 <th nowrap>Nome</th>
                 <th nowrap>Logotipo</th>
+                <th nowrap class="center-align">Apagar</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>asjdfkliesi</td>
-                <td>lissdfsdos</td>
+            <tr *ngFor="let inst of instituto | async">
+                <td>{{ inst.nome }}</td>
+                <td>{{ inst.logotipo }}</td>
+                <td class="center-align"><button class="btn-floating btn-small waves-effect waves-light red" (click)="apagar(inst.$key)"><i class="material-icons small">delete</i></button></td>
             </tr>
         </tbody>
     </table>
 
     <!-- Modal -->
-    <div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
         <div class="modal-content">
             <h4>Novo Instituto</h4>
             <div class="row">
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
                     <div class="input-field col s12 l6">
                         <div class="input-field col s12 l6">
-                            <input type="text" placeholder="Instituto" id="nome" class="validate" name="tipo">
-                            <label for="tipo">Nome</label>
+                            <input type="text" placeholder="Instituto" id="nome" class="validate" name="nome">
+                            <label for="nome">Nome</label>
+                        </div>
+                    </div>
+                    <div class="file-field input-field col l12">
+                        <div class="btn">
+                            <span>Logotipo</span>
+                            <input type="file" value="upload" name="logotipo" [ngModel] (change)="detectFiles($event)">
+                        </div>
+                        <div class="file-path-wrapper col l6">
+                            <input class="file-path validate" type="text" [ngModel]>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal()">Fechar</a>
-            <a class="modal-action modal-close waves-effect waves-green btn blue">Cadastrar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="closeModal(f)">Fechar</a>
+            <a class="modal-action modal-close waves-effect waves-green btn blue" (click)="onSubmit(f)">Cadastrar</a>
         </div>
     </div>
 </div>

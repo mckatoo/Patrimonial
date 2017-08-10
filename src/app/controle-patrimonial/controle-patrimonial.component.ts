@@ -1,10 +1,10 @@
-import { UploadService } from './../shared/upload.service';
-import { Upload } from './../shared/upload';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
+import { UploadService } from './../shared/upload.service';
+import { Upload } from './../shared/upload';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MaterializeAction } from 'angular2-materialize';
 import * as firebase from 'firebase';
@@ -105,7 +105,7 @@ export class ControlePatrimonialComponent implements OnInit {
   uploadNota() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, this.notaEdit.numNotaFiscal);
+    this.upSvc.pushUpload("notasFiscais/",this.currentUpload, this.notaEdit.numNotaFiscal);
   };
 
   imprimirNota(): void {

@@ -26,8 +26,10 @@ export class TiposUsuariosComponent implements OnInit {
     this.closeModal(form);
   };
 
-  apagar(key:string){
-    this.tiposUsuarios.remove(key);
+  apagar(key: string) {
+    if (confirm("Deseja realmente apagar este tipo de usuário?")) {
+      this.tiposUsuarios.remove(key);
+    }
   }
 
   openModal(form?) {
