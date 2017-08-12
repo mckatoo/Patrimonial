@@ -43,6 +43,14 @@
                         <input id="email" type="email" placeholder="E-Mail" class="validate" name="email" [ngModel]="editarUsuario.email">
                         <label for="email">E-Mail</label>
                     </div>
+                    <div class="input-field col s6 l6 m6">
+                        <input id="senha" type="password" class="validate" name="senha" [ngModel]="editarUsuario.senha">
+                        <label for="senha">Senha</label>
+                    </div>
+                    <div class="input-field col s6 l6 m6">
+                        <input id="confirmarSenha" type="password" class="validate" name="confirmarSenha" [ngModel]="editarUsuario.confirmarSenha">
+                        <label for="confirmarSenha">Confirmar Senha</label>
+                    </div>
                     <div class="input-field col s12 l6">
                         <select materialize="material_select" [materializeSelectOptions]="setores | async" id="setor" class="validate" name="setor" [ngModel]="editarUsuario.setor">
                             <option value="" disabled selected>Escolha uma opção</option>

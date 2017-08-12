@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -12,6 +13,8 @@ import * as firebase from 'firebase';
 })
 export class UsuariosComponent implements OnInit {
 
+  user: Observable<firebase.User>;
+
   modalActions = new EventEmitter<string | MaterializeAction>();
   usuarios:FirebaseListObservable<any>;
   tiposUsuarios:FirebaseListObservable<any>;
@@ -20,12 +23,16 @@ export class UsuariosComponent implements OnInit {
     "tipo": "",
     "nome": "",
     "email": "",
+    "senha": "",
+    "confirmarSenha": "",
     "setor": "",
     "ativo": "",
     "instituto": ""
   };
 
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+    this.user = afAuth.authState;
+
     this.usuarios = db.list('usuarios/');
     this.tiposUsuarios = db.list('tiposUsuarios/');
     this.setores = db.list('setores/');
@@ -46,9 +53,11 @@ export class UsuariosComponent implements OnInit {
 
   onSubmit(form) {
     if (form.value[1] != undefined) {
-      this.usuarios.update(form.value.key, form.value);
+      console.log("editar");
+      // this.usuarios.update(form.value.key, form.value);
     } else {
-      this.usuarios.push(form.value);
+      console.log(form.value);
+      // this.usuarios.push(form.value);
     }
   };
 
