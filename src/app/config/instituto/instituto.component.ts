@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import { UploadService } from './../../shared/upload.service';
@@ -29,22 +30,18 @@ export class InstitutoComponent implements OnInit {
   }
 
   onSubmit(form) {
-    let instituto = {
-      "nome": form.value.nome,
-      "logotipo": form.value.logotipo[0]
-    }
-    this.instituto.push(form.value);
-    this.closeModal(form);
+    this.uploadLogo(form.value.nome);
   };
 
-  apagar(key:string){
+  apagar(key: string) {
     if (confirm("Deseja realmente apagar este instituto?")) {
       this.instituto.remove(key);
     }
   }
 
-  openModal(data?) {
-    if (data == undefined) {
+  openModal(form?) {
+    if (form.value.nome == "") {
+      form.reset();
       this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {
       console.log("editar");
@@ -56,10 +53,13 @@ export class InstitutoComponent implements OnInit {
     form.reset();
   }
 
-  private uploadLogo() {
-    let file = this.selectedFiles.item(0);
-    this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload("institutoLogo/",this.currentUpload, this.currentUpload.name);
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  };
+
+  private uploadLogo(saveAs: string) {
+    this.currentUpload = new Upload(this.selectedFiles.item(0));
+    this.upSvc.pushUpload("instituto/", this.currentUpload, saveAs);
   };
 
 }

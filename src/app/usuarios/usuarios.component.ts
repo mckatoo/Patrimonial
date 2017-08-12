@@ -12,35 +12,55 @@ import * as firebase from 'firebase';
 })
 export class UsuariosComponent implements OnInit {
 
-  modalActionsUsuario = new EventEmitter<string | MaterializeAction>();
-  modalActionsAtivar = new EventEmitter<string | MaterializeAction>();
+  modalActions = new EventEmitter<string | MaterializeAction>();
+  usuarios:FirebaseListObservable<any>;
+  tiposUsuarios:FirebaseListObservable<any>;
+  setores:FirebaseListObservable<any>;
   editarUsuario = {
     "tipo": "",
     "nome": "",
     "email": "",
     "setor": "",
-    "ativo": ""
+    "ativo": "",
+    "instituto": ""
   };
 
-  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) { }
+  constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+    this.usuarios = db.list('usuarios/');
+    this.tiposUsuarios = db.list('tiposUsuarios/');
+    this.setores = db.list('setores/');
+  }
 
-  openModalUsuario(data?) {
-    if (data == undefined) {
-      this.modalActionsUsuario.emit({ action: "modal", params: ['open'] });
+  openModal(form?) {
+    if (form.value.key == undefined) {
+      // form.reset();
+      this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {
       console.log("editar");
       // this.modalActionsUsuario.emit({ action: "modal", params: ['open'] });
     }
   }
-  closeModalUsuario() {
-    this.modalActionsUsuario.emit({ action: "modal", params: ['close'] });
+  closeModal() {
+    this.modalActions.emit({ action: "modal", params: ['close'] });
   }
 
-  openModalAtivar() {
-    this.modalActionsAtivar.emit({ action: "modal", params: ['open'] });
+  onSubmit(form) {
+    if (form.value[1] != undefined) {
+      this.usuarios.update(form.value.key, form.value);
+    } else {
+      this.usuarios.push(form.value);
+    }
+  };
+
+  Ativar(key:string) {
+    if (confirm('Você deseja ativar este usuário?')) {
+      
+    }
   }
-  closeModalAtivar() {
-    this.modalActionsAtivar.emit({ action: "modal", params: ['close'] });
+  Desativar(key:string) {
+    if (confirm('Você deseja desativar este usuário?')) {
+      
+    }
   }
 
   ngOnInit() {

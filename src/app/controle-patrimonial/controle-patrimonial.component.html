@@ -46,7 +46,7 @@
                     <input *ngIf="patrimonioEdit.ativo != undefined" type="hidden" name="ativo" [ngModel]="patrimonioEdit.ativo">
                     <input *ngIf="patrimonioEdit.ativo == undefined" type="hidden" name="ativo" [ngModel]="'s'">
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="tipo" class="validate" name="tipo" [ngModel]="patrimonioEdit.tipo | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="tipos | async" id="tipo" class="validate" name="tipo" [ngModel]="patrimonioEdit.tipo | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let tipo of tipos | async" [value]="tipo.nome | uppercase">{{tipo.nome | uppercase}}</option>
                     </select>
@@ -68,7 +68,7 @@
                         <label for="tipo">Setor</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="areainst" class="validate" name="areainst" [ngModel]="patrimonioEdit.areainst | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="areainst | async" id="areainst" class="validate" name="areainst" [ngModel]="patrimonioEdit.areainst | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let area of areainst | async" [value]="area.nome | uppercase">{{area.nome | uppercase}}</option>
                     </select>
@@ -79,7 +79,7 @@
                         <label for="numNotaFiscal">nº NF</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="fornecedores" class="validate" name="fornecedor" [ngModel]="patrimonioEdit.fornecedor | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="fornecedores | async" id="fornecedores" class="validate" name="fornecedor" [ngModel]="patrimonioEdit.fornecedor | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let forn of fornecedores | async" [value]="forn.nome | uppercase">{{forn.nome | uppercase}}</option>
                     </select>
@@ -90,7 +90,7 @@
                         <label for="dataAquisicao">Data de Aquisição</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="autores" class="validate" name="autor" [ngModel]="patrimonioEdit.autor | uppercase">
+                        <select materialize="material_select" [materializeSelectOptions]="autores | async" id="autores" class="validate" name="autor" [ngModel]="patrimonioEdit.autor | uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let autor of autores | async" [value]="autor.nome | uppercase">{{autor.nome | uppercase}}</option>
                     </select>

@@ -1,6 +1,6 @@
 <div class="card-panel col l6 m6 s12">
     <div class="title z-depth-1 white-text">
-        <h4>Instituto</h4><a class="waves-effect waves-light btn blue right title-btn" (click)="openModal()">Novo</a>
+        <h4>Instituto</h4><a class="waves-effect waves-light btn blue right title-btn" (click)="openModal(f)">Novo</a>
     </div>
     <table class="bordered highlight">
         <thead>
@@ -12,8 +12,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let inst of instituto | async">
-                <td>{{ inst.nome }}</td>
-                <td>{{ inst.logotipo }}</td>
+                <td>{{ inst.name }}</td>
+                <td><img [src]="inst.url" [alt]="inst.name" height="30"></td>
                 <td class="center-align"><button class="btn-floating btn-small waves-effect waves-light red" (click)="apagar(inst.$key)"><i class="material-icons small">delete</i></button></td>
             </tr>
         </tbody>
@@ -25,19 +25,17 @@
             <h4>Novo Instituto</h4>
             <div class="row">
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
-                    <div class="input-field col s12 l6">
-                        <div class="input-field col s12 l6">
-                            <input type="text" placeholder="Instituto" id="nome" class="validate" name="nome">
-                            <label for="nome">Nome</label>
-                        </div>
+                    <div class="input-field col s12 l12">
+                        <input type="text" placeholder="Instituto" id="nome" class="validate" name="nome" ngModel>
+                        <label for="nome">Nome</label>
                     </div>
-                    <div class="file-field input-field col l12">
+                    <div class="file-field input-field col s12 l12">
                         <div class="btn">
                             <span>Logotipo</span>
-                            <input type="file" value="upload" name="logotipo" [ngModel] (change)="detectFiles($event)">
+                            <input type="file" value="upload" name="logotipo" (change)="detectFiles($event)">
                         </div>
-                        <div class="file-path-wrapper col l6">
-                            <input class="file-path validate" type="text" [ngModel]>
+                        <div class="file-path-wrapper col s9 l9">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </form>

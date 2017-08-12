@@ -10,9 +10,20 @@ nav {
         background-image: url('../assets/imagens/navbar-brand.png');
         background-repeat: no-repeat;
         background-position: center;
-        width: 316px;
-        background-size: 200px;
-        height: 64px;
+        width: 200px;
+        background-size: 100%;
+        height: 100%;
+    }
+    @media (min-width: 291px) and (max-width: 600px) {
+        .brand-logo {
+            width: 150px;
+        }
+    }
+    @media (max-width: 290px) {
+        .brand-logo {
+            background-image: url('../assets/imagens/login-logo.png');
+            width: 100px;
+        }
     }
 }
 
