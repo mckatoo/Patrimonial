@@ -13,11 +13,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let usuario of usuarios | async">
-                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar" (click)="openModal()">{{ usuario.nome }}</td>
+                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar"
+                    (click)="openModal()">{{ usuario.nome }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.setor }}</td>
-                <td *ngIf="usuario.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar Usuário" (click)="Ativar()"><i class="material-icons">check_circle</i></a></td>
-                <td *ngIf="usuario.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ativar" (click)="Desativar()"><i class="material-icons">block</i></a></td>
+                <td *ngIf="usuario.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom"
+                        data-delay="50" data-tooltip="Desativar Usuário" (click)="Ativar()"><i class="material-icons">check_circle</i></a></td>
+                <td *ngIf="usuario.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom"
+                        data-delay="50" data-tooltip="Ativar" (click)="Desativar()"><i class="material-icons">block</i></a></td>
             </tr>
         </tbody>
     </table>
@@ -30,8 +33,9 @@
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
                     <input type="hidden" name="key" [(ngModel)]="editarUsuario.$key">
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="tiposUsuarios | async" id="tipo" class="validate" name="tipo" [ngModel]="editarUsuario.tipo | uppercase">
-                             <option value="" disabled selected>Escolha uma opção</option> 
+                        <select materialize="material_select" [materializeSelectOptions]="tiposUsuarios | async" id="tipo" class="validate" name="tipo"
+                            [ngModel]="editarUsuario.tipo | uppercase">
+                            <option value="" disabled selected>Escolha uma opção</option> 
                             <option *ngFor="let tipo of tiposUsuarios | async" [value]="tipo.tipo | uppercase">{{tipo.tipo | uppercase}}</option>
                     </select>
                     </div>
@@ -44,15 +48,16 @@
                         <label for="email">E-Mail</label>
                     </div>
                     <div class="input-field col s6 l6 m6">
-                        <input id="senha" type="password" class="validate" name="senha" [ngModel]="editarUsuario.senha">
+                        <input [ngClass]="{'red': f.value.senha != f.value.confirmarSenha}" id="senha" type="password" class="validate" name="senha" [ngModel]="editarUsuario.senha">
                         <label for="senha">Senha</label>
                     </div>
                     <div class="input-field col s6 l6 m6">
-                        <input id="confirmarSenha" type="password" class="validate" name="confirmarSenha" [ngModel]="editarUsuario.confirmarSenha">
+                        <input [ngClass]="{'red': f.value.senha != f.value.confirmarSenha}" id="confirmarSenha" type="password" class="validate" name="confirmarSenha" [ngModel]="editarUsuario.confirmarSenha">
                         <label for="confirmarSenha">Confirmar Senha</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="setores | async" id="setor" class="validate" name="setor" [ngModel]="editarUsuario.setor">
+                        <select materialize="material_select" [materializeSelectOptions]="setores | async" id="setor" class="validate" name="setor"
+                            [ngModel]="editarUsuario.setor">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let setor of setores | async" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option> 
                     </select>
