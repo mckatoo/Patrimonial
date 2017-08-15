@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { MaterializeAction } from 'angular2-materialize';
 import * as firebase from 'firebase';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -16,18 +17,21 @@ export class UsuariosComponent implements OnInit {
   user: Observable<firebase.User>;
 
   modalActions = new EventEmitter<string | MaterializeAction>();
-  usuarios:FirebaseListObservable<any>;
-  tiposUsuarios:FirebaseListObservable<any>;
-  setores:FirebaseListObservable<any>;
+  usuarios: FirebaseListObservable<any>;
+  tiposUsuarios: FirebaseListObservable<any>;
+  setores: FirebaseListObservable<any>;
   editarUsuario = {
     "tipo": "",
     "nome": "",
     "email": "",
     "senha": "",
-    "confirmarSenha": "",
     "setor": "",
     "ativo": "",
     "instituto": ""
+  };
+  validate = {
+    borderBottom: '1px solid #9e9e9e',
+    boxShadow: 'none'
   };
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
@@ -36,6 +40,20 @@ export class UsuariosComponent implements OnInit {
     this.usuarios = db.list('usuarios/');
     this.tiposUsuarios = db.list('tiposUsuarios/');
     this.setores = db.list('setores/');
+  }
+
+  validaSenha(form: NgForm) {
+    if (form.value.senha == form.value.confirmarSenha) {
+      this.validate = {
+        borderBottom: '1px solid #4CAF50',
+        boxShadow: '0 1px 0 0 #4CAF50'
+      };
+    } else {
+      this.validate = {
+        borderBottom: '1px solid red',
+        boxShadow: '0 1px 0 0 red'
+      };
+    }
   }
 
   openModal(form?) {
@@ -51,24 +69,34 @@ export class UsuariosComponent implements OnInit {
     this.modalActions.emit({ action: "modal", params: ['close'] });
   }
 
-  onSubmit(form) {
+  onSubmit(form: NgForm) {
     if (form.value[1] != undefined) {
       console.log("editar");
       // this.usuarios.update(form.value.key, form.value);
     } else {
+
+      this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha);
       console.log(form.value);
-      // this.usuarios.push(form.value);
+      this.usuarios.push({
+        "tipo": `${form.value.tipo}`,
+        "nome": `${form.value.nome}`,
+        "email": `${form.value.email}`,
+        "setor": `${form.value.setor}`,
+        "ativo": true,
+        "instituto": "IESI"
+      });
     }
+    form.reset();
   };
 
-  Ativar(key:string) {
+  Ativar(key: string) {
     if (confirm('Você deseja ativar este usuário?')) {
-      
+
     }
   }
-  Desativar(key:string) {
+  Desativar(key: string) {
     if (confirm('Você deseja desativar este usuário?')) {
-      
+
     }
   }
 
