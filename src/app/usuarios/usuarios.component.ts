@@ -21,6 +21,7 @@ export class UsuariosComponent implements OnInit {
   tiposUsuarios: FirebaseListObservable<any>;
   setores: FirebaseListObservable<any>;
   editarUsuario = {
+    "key": "",
     "tipo": "",
     "nome": "",
     "email": "",
@@ -56,16 +57,34 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  openModal(form?) {
-    if (form.value.key == undefined) {
-      // form.reset();
+  openModal(form?, dataEdit?) {
+    if (dataEdit == undefined) {
       this.modalActions.emit({ action: "modal", params: ['open'] });
     } else {
-      console.log("editar");
-      // this.modalActionsUsuario.emit({ action: "modal", params: ['open'] });
+      this.modalActions.emit({ action: "modal", params: ['open'] });
+      this.editarUsuario.key = dataEdit.$key;
+      this.editarUsuario.tipo = dataEdit.tipo;
+      this.editarUsuario.nome = dataEdit.nome;
+      this.editarUsuario.email = dataEdit.email;
+      this.editarUsuario.setor = dataEdit.setor;
     }
   }
+
+  private limpar() {
+    this.editarUsuario = {
+      "key": "",
+      "tipo": "",
+      "nome": "",
+      "email": "",
+      "senha": "",
+      "setor": "",
+      "ativo": "",
+      "instituto": ""
+    };
+  }
+
   closeModal() {
+    this.limpar();
     this.modalActions.emit({ action: "modal", params: ['close'] });
   }
 
@@ -74,7 +93,6 @@ export class UsuariosComponent implements OnInit {
       console.log("editar");
       // this.usuarios.update(form.value.key, form.value);
     } else {
-
       this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha);
       console.log(form.value);
       this.usuarios.push({
@@ -86,7 +104,7 @@ export class UsuariosComponent implements OnInit {
         "instituto": "IESI"
       });
     }
-    form.reset();
+    this.limpar();
   };
 
   Ativar(key: string) {

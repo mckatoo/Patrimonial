@@ -1,25 +1,26 @@
 <div class="deep-orange darken-1 text-darken-2">
     <div class="row login-form">
         <div class="col s12 z-depth-4 card-panel">
-            <form>
+            <form #f="ngForm" (ngSubmit)="login(f)">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <img src="assets/imagens/navbar-brand.png" alt="" class="responsive-img valign profile-image-login">
                         <p class="center login-form-text">IESI - Controle Patrimonial</p>
+                        <small class="alert" *ngIf="erro">{{erro}}</small>
                     </div>
                 </div>
                 <div class="row margin">
                     <div class="input-field col s12">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="username" type="text">
-                        <label for="username" class="center-align">Usuário</label>
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" name="email" class="validate" required email ngModel>
+                        <label for="email" class="center-align">E-Mail</label>
                     </div>
                 </div>
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="password" type="password">
-                        <label for="password">Senha</label>
+                        <input id="senha" type="password" name="senha" class="validate" required ngModel>
+                        <label for="senha">Senha</label>
                     </div>
                 </div>
                 <div class="row">
@@ -30,7 +31,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="#" class="btn blue darken-4 waves-effect waves-light col s12">Entrar</a>
+                        <a (click)="login(f)" class="btn blue darken-4 waves-effect waves-light col s12">Entrar</a>
                     </div>
                 </div>
                 <div class="row">
