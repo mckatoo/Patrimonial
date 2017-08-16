@@ -16,11 +16,15 @@ export class AppComponent {
   
     constructor(public afAuth: AngularFireAuth, private router: Router) {
       this.user = afAuth.authState;
+      this.user.subscribe(snap => {
+        if (snap == null) {
+          console.log("Redirecionando para login.");
+          this.router.navigate(['/login']);
+        }
+      });
     }
   
     logout() {
-      this.afAuth.auth.signOut().then((success) => {
-        this.router.navigate(['/login']);
-      });
+      this.afAuth.auth.signOut();
     }
 }
