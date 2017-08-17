@@ -22,3 +22,15 @@ thead {
 table {
     width: 100%;
 }
+
+.tabletHide {
+    @media screen and (max-width: 1000px) {
+        display: none !important;
+    }
+}
+
+.smartHide {
+    @media screen and (max-width: 500px) {
+        display: none !important;
+    }
+}

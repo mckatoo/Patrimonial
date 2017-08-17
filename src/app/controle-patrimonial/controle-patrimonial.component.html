@@ -5,30 +5,30 @@
     <table class="bordered highlight">
         <thead>
             <tr>
-                <th nowrap>Tipo</th>
+                <th nowrap class="smartHide">Tipo</th>
                 <th nowrap>nº Patr</th>
                 <th nowrap>Descrição</th>
-                <th nowrap>Setor</th>
-                <th nowrap>Área/Inst</th>
+                <th nowrap class="smartHide">Setor</th>
+                <th nowrap class="tabletHide">Área/Inst</th>
                 <th nowrap>nº NF</th>
-                <th nowrap>Fornecedor</th>
-                <th nowrap>Aquisição</th>
-                <th nowrap>Autor</th>
+                <th nowrap class="smartHide">Fornecedor</th>
+                <th nowrap class="tabletHide">Aquisição</th>
+                <th nowrap class="tabletHide">Autor</th>
                 <th nowrap class="center-align">Duplicar</th>
                 <th nowrap class="center-align">Status</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let p of patrimonios | async">
-                <td class="tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" [attr.data-tooltip]="p.tipo | uppercase">{{p.tipo | uppercase | slice:0:5}}</td>
+                <td class="smartHide tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" [attr.data-tooltip]="p.tipo | uppercase">{{p.tipo | uppercase | slice:0:5}}</td>
                 <td>{{p.numPlacaPatr}}</td>
                 <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar" (click)="openModal(p)">{{p.descr | uppercase}}</td>
-                <td>{{p.setor | uppercase}}</td>
-                <td nowrap>{{p.areainst | uppercase}}</td>
+                <td class="smartHide">{{p.setor | uppercase}}</td>
+                <td nowrap class="tabletHide">{{p.areainst | uppercase}}</td>
                 <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Inserir ou Atualizar a Nota-Fiscal" (click)="openModalNota(p.numNotaFiscal)">{{p.numNotaFiscal}}</td>
-                <td>{{p.fornecedor | uppercase}}</td>
-                <td>{{p.dataAquisicao}}</td>
-                <td>{{p.autor | uppercase}}</td>
+                <td class="smartHide">{{p.fornecedor | uppercase}}</td>
+                <td class="tabletHide">{{p.dataAquisicao}}</td>
+                <td class="tabletHide">{{p.autor | uppercase}}</td>
                 <td class="center-align"><a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">control_point_duplicate</i></a></td>
                 <td *ngIf="p.ativo == 's'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light green tooltipped" data-position="bottom" data-delay="50" data-tooltip="Desativar"><i class="material-icons">check_circle</i></a></td>
                 <td *ngIf="p.ativo == 'n'" class="center-align"><a materialize="tooltip" class="btn-floating btn-small waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="Ativar"><i class="material-icons">block</i></a></td>

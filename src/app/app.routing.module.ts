@@ -12,9 +12,13 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent },
     { path: 'controle-patrimonial', component: ControlePatrimonialComponent },
+    { path: 'Controle Patrimonial', component: ControlePatrimonialComponent },
     { path: 'usuarios', component: UsuariosComponent },
+    { path: 'Usuários', component: UsuariosComponent },
     { path: 'config', component: ConfigComponent },
-    { path: 'login', component: LoginComponent}
+    { path: 'Configurações', component: ConfigComponent },
+    { path: 'login', component: LoginComponent},
+    { path: 'Sair', component: LoginComponent}
 ];
 
 @NgModule({

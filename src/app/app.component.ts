@@ -10,16 +10,19 @@ import * as firebase from 'firebase';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-  title = 'app';
+  routeNames = ["Controle Patrimonial", "Usuários", "Configurações", "Sair"];
   user: Observable<firebase.User>;
+  logado:boolean = false;
   
     constructor(public afAuth: AngularFireAuth, private router: Router) {
       this.user = afAuth.authState;
       this.user.subscribe(snap => {
         if (snap == null) {
-          console.log("Redirecionando para login.");
           this.router.navigate(['/login']);
+        } else {
+          this.logado = true;
         }
       });
     }
