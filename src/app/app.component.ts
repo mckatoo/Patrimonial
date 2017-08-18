@@ -14,20 +14,28 @@ import * as firebase from 'firebase';
 export class AppComponent {
   routeNames = ["Controle Patrimonial", "Usuários", "Configurações", "Sair"];
   user: Observable<firebase.User>;
-  logado:boolean = false;
-  
-    constructor(public afAuth: AngularFireAuth, private router: Router) {
-      this.user = afAuth.authState;
-      this.user.subscribe(snap => {
-        if (snap == null) {
-          this.logado = false;
-        } else {
-          this.logado = true;
+  logado: boolean = false;
+
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+    this.user = afAuth.authState;
+
+    this.user.subscribe(snap => {
+      if (snap == null) {
+        this.logado = false;
+        this.router.navigate(['/login']);
+      } else {
+        this.logado = true;
+      }
+    });
+    this.router.navigateByUrl('/login')
+      .then(snap => {
+        if (this.logado = true) {
+          this.router.navigate(['/controle-patrimonial']);
         }
-      });
-    }
-  
-    logout() {
-      this.afAuth.auth.signOut();
-    }
+      })
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
+  }
 }

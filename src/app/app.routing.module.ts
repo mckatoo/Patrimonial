@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth-guard';
 import { Observable } from 'rxjs/Observable';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,8 +18,8 @@ const appRoutes: Routes = [
     { path: 'Usuários', component: UsuariosComponent },
     { path: 'config', component: ConfigComponent },
     { path: 'Configurações', component: ConfigComponent },
-    { path: 'login', component: LoginComponent},
-    { path: 'Sair', component: LoginComponent}
+    { path: 'login', component: LoginComponent },
+    { path: 'Sair', component: LoginComponent }
 ];
 
 @NgModule({

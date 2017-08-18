@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth-guard';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -42,7 +43,7 @@ import { SetoresComponent } from './config/setores/setores.component';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [UploadService],
+  providers: [UploadService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
