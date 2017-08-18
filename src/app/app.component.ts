@@ -20,7 +20,7 @@ export class AppComponent {
       this.user = afAuth.authState;
       this.user.subscribe(snap => {
         if (snap == null) {
-          this.router.navigate(['/login']);
+          this.logado = false;
         } else {
           this.logado = true;
         }
