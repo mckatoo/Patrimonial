@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
@@ -27,12 +28,6 @@ export class AppComponent {
         this.logado = true;
       }
     });
-    this.router.navigateByUrl('/login')
-      .then(snap => {
-        if (this.logado = true) {
-          this.router.navigate(['/controle-patrimonial']);
-        }
-      })
   }
 
   logout() {
