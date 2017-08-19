@@ -4,22 +4,16 @@
             <div class="nav-wrapper">
                 <div class="container">
                     <a routerLink="" class="brand-logo"></a>
-                    <a data-activates="mobile-menu" class='dropdown-button button-collapse' data-beloworigin="true" style="cursor: pointer;" data-activates='dropdown1'>
-                        <i class="material-icons">menu</i>
-                    </a>
 
-                    <!-- <ul id='dropdown1' class='dropdown-content'>
-                        <li routerLinkActive="active"><a routerLink="controle-patrimonial">Controle Patrimonial</a></li>
-                        <li routerLinkActive="active"><a routerLink="usuarios">Usuários</a></li>
-                        <li routerLinkActive="active"><a routerLink="config">Configurações</a></li>
-                        <li><a (click)="logout()">Sair</a></li>
-                    </ul> -->
 
-                    <ul id="slide-out" class="side-nav fixed">
-                        <li *ngFor="let routeName of routeNames" routerLinkActive="active"><a [routerLink]="[routeName]">{{routeName}}</a></li>
+                    <ul id="slide-out" class="side-nav {{estadoMenu}}">
+                        <li routerLinkActive="active"><a (click)="toggle()" routerLink="controle-patrimonial">Controle Patrimonial</a></li>
+                        <li routerLinkActive="active"><a (click)="toggle()" routerLink="usuarios">Usuários</a></li>
+                        <li routerLinkActive="active"><a (click)="toggle()" routerLink="config">Configurações</a></li>
+                        <li><a class="waves-effect" (click)="logout();toggle();">Sair</a></li>
                     </ul>
-                    <a materialize="sideNav" [materializeParams]="[{edge:'left'}]" href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
-                    <a materialize="sideNav" [materializeParams]="[{edge:'left'}]" href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+                    <a class="button-collapse btn-menu {{estadoBotaoMenu}}"><i class="material-icons" (click)="toggle()">menu</i></a>
+
 
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li routerLinkActive="active"><a routerLink="controle-patrimonial">Controle Patrimonial</a></li>

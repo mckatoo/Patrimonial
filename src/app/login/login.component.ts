@@ -17,6 +17,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
+    if (this.user != null && router.routerState.snapshot.url == '/login') {
+      this.router.navigate(['/controle-patrimonial']);
+    }
+    // this.user.subscribe(user => {
+    //   if (user.email != '' && router.routerState.snapshot.url == '/login') {
+    //     this.router.navigate(['/controle-patrimonial']);
+    //   }
+    // })
   }
 
   ngOnInit() {

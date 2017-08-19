@@ -13,11 +13,12 @@ import * as firebase from 'firebase';
 })
 
 export class AppComponent {
-  routeNames = ["Controle Patrimonial", "Usuários", "Configurações", "Sair"];
   user: Observable<firebase.User>;
   logado: boolean = false;
+  estadoMenu:string = "menu-out";
+  estadoBotaoMenu:string = "btn-menu-out";
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
 
     this.user.subscribe(snap => {
@@ -28,6 +29,16 @@ export class AppComponent {
         this.logado = true;
       }
     });
+  }
+
+  toggle() {
+    if (this.estadoMenu == "menu-out") {
+      this.estadoMenu = "menu-in";
+      this.estadoBotaoMenu = "btn-menu-in";
+    } else {
+      this.estadoMenu = "menu-out";
+      this.estadoBotaoMenu = "btn-menu-out";
+    }
   }
 
   logout() {

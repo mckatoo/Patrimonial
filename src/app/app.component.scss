@@ -27,6 +27,24 @@ nav {
     }
 }
 
-#dropdown1 {
-    width: auto !important;
+.btn-menu {
+    cursor: pointer;
+    position: absolute;
+    left: 0px;
+}
+
+.menu-out {
+    transform: translateX(-300px);
+}
+
+.btn-menu-out {
+    transform: translateX(0px);
+}
+
+.menu-in {
+    transform: translateX(0px);
+}
+
+.btn-menu-in {
+    transform: translateX(300px);
 }
