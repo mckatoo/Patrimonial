@@ -18,13 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
     if (this.user != null && router.routerState.snapshot.url == '/login') {
-      this.router.navigate(['/controle-patrimonial']);
+      this.router.navigate(['']);
     }
-    // this.user.subscribe(user => {
-    //   if (user.email != '' && router.routerState.snapshot.url == '/login') {
-    //     this.router.navigate(['/controle-patrimonial']);
-    //   }
-    // })
   }
 
   ngOnInit() {
@@ -33,7 +28,7 @@ export class LoginComponent implements OnInit {
   login(form) {
     this.afAuth.auth.signInWithEmailAndPassword(form.value.email,form.value.senha)
     .then((success) => {
-      this.router.navigate(['/controle-patrimonial']);
+      this.router.navigate(['']);
     })
     .catch((erro) => {
       this.erro = erro.message;
