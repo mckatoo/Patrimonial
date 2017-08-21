@@ -1,0 +1,5 @@
+{
+    "LOGIN": {
+        "INVALID": "A senha é inválida ou o usuário não possui uma senha."
+    }
+}

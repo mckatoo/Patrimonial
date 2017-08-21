@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
+import { TranslateService } from 'ng2-translate';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,10 @@ export class AppComponent {
   estadoMenu:string = "menu-out";
   estadoBotaoMenu:string = "btn-menu-out";
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private router: Router, private translate: TranslateService) {
+    translate.addLangs(["pt_BR"]);
+    translate.setDefaultLang('pt_BR');
+
     this.user = afAuth.authState;
 
     this.user.subscribe(snap => {

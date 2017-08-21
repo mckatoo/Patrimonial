@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
+// import { TranslateService } from 'ng2-translate';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,11 @@ export class LoginComponent implements OnInit {
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
-    if (this.user != null && router.routerState.snapshot.url == '/login') {
-      this.router.navigate(['']);
-    }
+    this.user.subscribe(user => {
+      if (user != null && router.routerState.snapshot.url == '/login') {
+        this.router.navigate(['']);
+      }
+    });
   }
 
   ngOnInit() {
