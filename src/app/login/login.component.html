@@ -24,15 +24,9 @@
                         <label for="senha">Senha</label>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="input-field col s12 m12 l12  login-text">
-                        <input type="checkbox" id="remember-me" />
-                        <label for="remember-me">Lembrar</label>
-                    </div>
-                </div> -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <a (click)="login(f)" class="btn blue darken-4 waves-effect waves-light col s12">Entrar</a>
+                        <button (click)="login(f)" class="btn blue darken-4 waves-effect waves-light col s12">Entrar</button>
                     </div>
                 </div>
                 <div *ngIf="f.valid" class="row">

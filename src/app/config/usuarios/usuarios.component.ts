@@ -21,14 +21,14 @@ export class UsuariosComponent implements OnInit {
   tiposUsuarios: FirebaseListObservable<any>;
   setores: FirebaseListObservable<any>;
   editarUsuario = {
-    "key": "",
-    "tipo": "",
-    "nome": "",
-    "email": "",
-    "senha": "",
-    "setor": "",
-    "ativo": "",
-    "instituto": ""
+    "key": '',
+    "tipo": '',
+    "nome": '',
+    "email": '',
+    "senha": '',
+    "setor": '',
+    "ativo": '',
+    "instituto": ''
   };
   validate = {
     borderBottom: '1px solid #9e9e9e',
@@ -72,20 +72,23 @@ export class UsuariosComponent implements OnInit {
 
   private limpar() {
     this.editarUsuario = {
-      "key": "",
-      "tipo": "",
-      "nome": "",
-      "email": "",
-      "senha": "",
-      "setor": "",
-      "ativo": "",
-      "instituto": ""
+      "key": null,
+      "tipo": '',
+      "nome": '',
+      "email": '',
+      "senha": '',
+      "setor": '',
+      "ativo": '',
+      "instituto": ''
     };
   }
 
-  closeModal() {
+  closeModal(form) {
     this.limpar();
     this.modalActions.emit({ action: "modal", params: ['close'] });
+    form.reset();
+    form.value.key = '';
+    console.log(form.value.key)
   }
 
   onSubmit(form: NgForm) {
@@ -93,15 +96,20 @@ export class UsuariosComponent implements OnInit {
       console.log("editar");
       // this.usuarios.update(form.value.key, form.value);
     } else {
-      this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha);
-      this.usuarios.push({
-        "tipo": `${form.value.tipo}`,
-        "nome": `${form.value.nome}`,
-        "email": `${form.value.email}`,
-        "setor": `${form.value.setor}`,
-        "ativo": true,
-        "instituto": "IESI"
-      });
+      this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha)
+        .then(user => {
+          this.usuarios.push({
+            "tipo": `${form.value.tipo}`,
+            "nome": `${form.value.nome}`,
+            "email": `${form.value.email}`,
+            "setor": `${form.value.setor}`,
+            "ativo": true,
+            "instituto": "IESI"
+          })
+          .then(() => {
+            form.reset();
+          });
+        });
     }
     this.limpar();
   };
