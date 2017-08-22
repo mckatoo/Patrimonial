@@ -44,11 +44,11 @@
                         <label for="email">E-Mail</label>
                     </div>
                     <div *ngIf="f.value.key == ''" class="input-field col s6 l6 m6">
-                        <input id="senha" type="password" class="validate" [style.border-bottom]="validate.borderBottom" [style.box-shadow]="validate.boxShadow" name="senha" [ngModel]="editarUsuario.senha" (change)="validaSenha(f)" required>
+                        <input id="senha" minlength="6" type="password" class="validate" [style.border-bottom]="validate.borderBottom" [style.box-shadow]="validate.boxShadow" name="senha" [ngModel]="editarUsuario.senha" (change)="validaSenha(f)" required>
                         <label for="senha">Senha</label>
                     </div>
                     <div *ngIf="f.value.key == ''" class="input-field col s6 l6 m6">
-                        <input id="confirmarSenha" type="password" class="validate" [style.border-bottom]="validate.borderBottom" [style.box-shadow]="validate.boxShadow" name="confirmarSenha" [ngModel]="editarUsuario.confirmarSenha" (change)="validaSenha(f)" required>
+                        <input id="confirmarSenha" minlength="6" type="password" class="validate" [style.border-bottom]="validate.borderBottom" [style.box-shadow]="validate.boxShadow" name="confirmarSenha" [ngModel]="editarUsuario.confirmarSenha" (change)="validaSenha(f)" required>
                         <label for="confirmarSenha">Confirmar Senha</label>
                     </div>
                     <div class="input-field col s12 l6">

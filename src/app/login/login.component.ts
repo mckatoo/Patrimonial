@@ -14,7 +14,8 @@ import * as firebase from 'firebase';
 export class LoginComponent implements OnInit {
 
   user: Observable<firebase.User>;
-  erro: string;
+  erro: string = '';
+  sucesso: string = '';
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.user = afAuth.authState;
@@ -34,8 +35,21 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['']);
     })
     .catch((erro) => {
+      this.sucesso = '';
       this.erro = erro.message;
     })
+  }
+
+  reset(email?:string) {
+    if (email == '') {
+      this.sucesso = '';
+      this.erro = "Preencha no campo email para qual a senha deve ser refeita.";
+    } else {
+      this.afAuth.auth.sendPasswordResetEmail(email).then(sucesso => {
+        this.erro = '';
+        this.sucesso = 'sucesso';
+      });
+    }
   }
 
 }

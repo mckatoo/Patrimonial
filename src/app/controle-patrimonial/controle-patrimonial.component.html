@@ -25,7 +25,7 @@
                 <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar" (click)="openModal(p)">{{p.descr | uppercase}}</td>
                 <td class="smartHide">{{p.setor | uppercase}}</td>
                 <td nowrap class="tabletHide">{{p.areainst | uppercase}}</td>
-                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Inserir ou Atualizar a Nota-Fiscal" (click)="openModalNota(p.numNotaFiscal)">{{p.numNotaFiscal}}</td>
+                <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Inserir ou Atualizar a Nota-Fiscal" (click)="openModalNota(p.numNotaFiscal);fNota.reset()">{{p.numNotaFiscal}}</td>
                 <td class="smartHide">{{p.fornecedor | uppercase}}</td>
                 <td class="tabletHide">{{p.dataAquisicao}}</td>
                 <td class="tabletHide">{{p.autor | uppercase}}</td>
@@ -61,7 +61,7 @@
                         <label for="descr">Descrição</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="selectOptions" id="setor" class="validate" name="setor" [ngModel]="patrimonioEdit.setor">
+                        <select materialize="material_select" [materializeSelectOptions]="setores | async" id="setor" class="validate" name="setor" [ngModel]="patrimonioEdit.setor |uppercase">
                             <option value="" disabled selected>Escolha uma opção</option>
                             <option *ngFor="let setor of setores | async" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option>
                     </select>
@@ -120,10 +120,10 @@
                         <div class="file-field input-field col l12">
                             <div class="btn">
                                 <span>Arquivo</span>
-                                <input type="file" value="upload" name="nota" [ngModel] (change)="detectFiles($event)">
+                                <input #nota type="file" value="upload" name="nota" [ngModel] (change)="detectFiles($event)">
                             </div>
                             <div class="file-path-wrapper col l6">
-                                <input class="file-path validate" type="text" [ngModel]>
+                                <input class="file-path validate" type="text" name="filePath" [ngModel]>
                             </div>
                             <button class="btn waves-effect waves-orange blue right" (click)="uploadNota()"><i class="material-icons right">send</i>Enviar</button>
                         </div>

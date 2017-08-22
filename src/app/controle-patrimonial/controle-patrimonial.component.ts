@@ -136,12 +136,12 @@ export class ControlePatrimonialComponent implements OnInit {
       this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
   };
-
+  
   closeModal() {
     this.limpar();
     this.modalActions.emit({ action: 'modal', params: ['close'] });
   };
-
+  
   openModalNota(data) {
     this.notaEdit.numNotaFiscal = data;
     this.modalNota.emit({ action: 'modal', params: ['open'] });

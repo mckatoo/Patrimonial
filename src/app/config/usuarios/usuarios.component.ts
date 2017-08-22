@@ -44,7 +44,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   validaSenha(form: NgForm) {
-    if (form.value.senha == form.value.confirmarSenha) {
+    if ((form.value.senha == form.value.confirmarSenha) && (form.value.senha.length > 5)) {
       this.validate = {
         borderBottom: '1px solid #4CAF50',
         boxShadow: '0 1px 0 0 #4CAF50'
@@ -94,7 +94,6 @@ export class UsuariosComponent implements OnInit {
       // this.usuarios.update(form.value.key, form.value);
     } else {
       this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha);
-      console.log(form.value);
       this.usuarios.push({
         "tipo": `${form.value.tipo}`,
         "nome": `${form.value.nome}`,

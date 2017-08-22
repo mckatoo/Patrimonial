@@ -1,5 +1,6 @@
 {
     "LOGIN": {
-        "INVALID": "A senha é inválida ou o usuário não possui uma senha."
+        "INVALID": "A senha é inválida ou o usuário não possui uma senha.",
+        "RESET": "Verifique seu email e clique no link informado para atualizar sua senha."
     }
 }

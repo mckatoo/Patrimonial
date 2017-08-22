@@ -6,7 +6,8 @@
                     <div class="input-field col s12 center">
                         <img src="assets/imagens/navbar-brand.png" alt="" class="responsive-img valign profile-image-login">
                         <p class="center login-form-text">IESI - Controle Patrimonial</p>
-                        <div class="card-panel deep-orange darken-1 white-text" *ngIf="erro" >{{ 'LOGIN.INVALID' | translate }}</div>
+                        <div class="card-panel red darken-4 white-text" *ngIf="erro != ''">{{ 'LOGIN.INVALID' | translate }}</div>
+                        <div class="card-panel deep-orange darken-1 white-text" *ngIf="sucesso != ''">{{ 'LOGIN.RESET' | translate }}</div>
                     </div>
                 </div>
                 <div class="row margin">
@@ -19,7 +20,7 @@
                 <div class="row margin">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock_outline</i>
-                        <input id="senha" type="password" name="senha" class="validate" required ngModel>
+                        <input id="senha" type="password" name="senha" class="validate" ngModel>
                         <label for="senha">Senha</label>
                     </div>
                 </div>
@@ -34,8 +35,8 @@
                         <a (click)="login(f)" class="btn blue darken-4 waves-effect waves-light col s12">Entrar</a>
                     </div>
                 </div>
-                <div class="row">
-                    <p class="margin center-align medium-small"><a href="#">Esqueceu a senha?</a></p>
+                <div *ngIf="f.valid" class="row">
+                    <p class="margin center-align medium-small"><a (click)="reset(f.value.email)" style="cursor: pointer;">Esqueceu ou quer trocar a senha?</a></p>
                 </div>
 
             </form>
