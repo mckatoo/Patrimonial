@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
-      if (( user != null ) && ( user.email != undefined )) {
+      if ( user != null ) {
         db.list('/usuarios',{
           query: {
             orderByChild: 'email',

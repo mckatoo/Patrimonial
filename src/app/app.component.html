@@ -1,24 +1,22 @@
-<header *ngIf="logado == true">
+<header *ngIf="logado">
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
                 <div class="container">
                     <a routerLink="" class="brand-logo"></a>
 
-
                     <ul id="slide-out" class="side-nav {{estadoMenu}}">
                         <li routerLinkActive="active"><a (click)="toggle()" routerLink="controle-patrimonial">Controle Patrimonial</a></li>
                         <li routerLinkActive="active"><a (click)="toggle()" routerLink="usuarios">Usuários</a></li>
-                        <li routerLinkActive="active"><a (click)="toggle()" routerLink="config">Configurações</a></li>
+                        <li routerLinkActive="active" *ngIf="usuario?.tipo != 'CONSULTOR'"><a (click)="toggle()" routerLink="config">Configurações</a></li>
                         <li><a class="waves-effect" (click)="logout();toggle();">Sair</a></li>
                     </ul>
                     <a class="button-collapse btn-menu {{estadoBotaoMenu}}"><i class="material-icons" (click)="toggle()">menu</i></a>
 
-
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li routerLinkActive="active"><a routerLink="controle-patrimonial">Controle Patrimonial</a></li>
                         <li routerLinkActive="active"><a routerLink="usuarios">Usuários</a></li>
-                        <li routerLinkActive="active"><a routerLink="config">Configurações</a></li>
+                        <li routerLinkActive="active" *ngIf="usuario?.tipo != 'CONSULTOR'"><a routerLink="config">Configurações</a></li>
                         <li><a (click)="logout()">Sair</a></li>
                     </ul>
                 </div>
@@ -29,19 +27,7 @@
 <main>
     <router-outlet></router-outlet>
 </main>
-<footer class="page-footer cyan" *ngIf="logado == true">
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col s12 m8 l6">
-                <h5 class="white-text">First Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-            </div>
-            <div class="col s12 m4 l6">
-                <h5 class="white-text">Second Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-            </div>
-        </div>
-    </div> -->
+<footer class="page-footer cyan" *ngIf="logado">
     <div class="footer-copyright">
         <div class="container">
             © 2017 IESI - Controle Patrimonial v1.0.0

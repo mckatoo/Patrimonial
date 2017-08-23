@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 })
 export class UsuariosComponent implements OnInit {
 
-  user: Observable<firebase.User>;
+  auth: Observable<firebase.User>;
 
   modalActions = new EventEmitter<string | MaterializeAction>();
   usuarios: FirebaseListObservable<any>;
@@ -36,9 +36,29 @@ export class UsuariosComponent implements OnInit {
   };
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
-    this.user = afAuth.authState;
+    this.auth = afAuth.authState;
 
-    this.usuarios = db.list('usuarios/');
+    this.auth.subscribe(auth => {
+      db.list('usuarios/',{
+        query: {
+          orderByChild: 'email',
+          equalTo: auth.email
+        }
+      }).subscribe(usuario => {
+        if (usuario[0].tipo == 'ADMINISTRADOR') {
+          this.usuarios = db.list('usuarios/');
+        } else {
+          this.usuarios = db.list('usuarios/',{
+            query: {
+              orderByChild: 'tipo',
+              startAt: 'CONSULTOR',
+              endAt: 'GESTOR'
+            }
+          });
+        }
+      });
+    });
+
     this.tiposUsuarios = db.list('tiposUsuarios/');
     this.setores = db.list('setores/');
   }
