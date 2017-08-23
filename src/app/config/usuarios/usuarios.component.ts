@@ -16,6 +16,7 @@ export class UsuariosComponent implements OnInit {
 
   auth: Observable<firebase.User>;
 
+  user = [];
   modalActions = new EventEmitter<string | MaterializeAction>();
   usuarios: FirebaseListObservable<any>;
   tiposUsuarios: FirebaseListObservable<any>;
@@ -37,6 +38,7 @@ export class UsuariosComponent implements OnInit {
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.auth = afAuth.authState;
+    this.usuarios = db.list('usuarios/');
 
     this.auth.subscribe(auth => {
       db.list('usuarios/',{
@@ -46,14 +48,23 @@ export class UsuariosComponent implements OnInit {
         }
       }).subscribe(usuario => {
         if (usuario[0].tipo == 'ADMINISTRADOR') {
-          this.usuarios = db.list('usuarios/');
+          db.list('usuarios/').subscribe(usuarios => {
+            this.user = usuarios;
+          });
         } else {
-          this.usuarios = db.list('usuarios/',{
+          db.list('usuarios/',{
             query: {
               orderByChild: 'tipo',
               startAt: 'CONSULTOR',
               endAt: 'GESTOR'
             }
+          }).subscribe(usuarios => {
+            usuarios.forEach( u => {
+              if (u.setor == usuario[0].setor) {
+                this.user.push(u);
+              }
+            });
+            console.log(this.user);
           });
         }
       });

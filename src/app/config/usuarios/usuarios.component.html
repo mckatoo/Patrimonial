@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let usuario of usuarios | async">
+            <tr *ngFor="let usuario of user">
                 <td class="pointer tooltipped" materialize="tooltip" data-position="bottom" data-delay="50" data-tooltip="Clique para Editar" (click)="openModal(f,usuario)">{{ usuario.nome }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.setor }}</td>

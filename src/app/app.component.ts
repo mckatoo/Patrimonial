@@ -49,6 +49,10 @@ export class AppComponent {
         });
       }
     });
+    this.router.events.subscribe(rota => {
+      console.log(rota);
+      console.log(this.usuario);
+    });
   }
 
   toggle() {
