@@ -1,6 +1,57 @@
 {
   "rules": {
-    ".read": "true",
-    ".write": "true"
+    ".read": "auth != null",
+    ".write": "auth != null",
+      "areainst": {
+        ".indexOn": ["nome"]
+      },
+      "fornecedores":{
+        ".indexOn": ["cnpj","nome"]
+      },
+      "instituto":{
+        ".indexOn": ["name","url"]
+      },
+      "localunid":{
+        ".indexOn": ["nome"]
+      },
+      "notasFiscais":{
+        ".indexOn": ["name","url"]
+      },
+      "patrimonios":{
+        ".indexOn": 
+        [
+          "areainst",
+          "ativo",
+          "autor",
+          "dataAquisicao",
+          "descr",
+          "fornecedor",
+          "numNotaFiscal",
+          "numPlacaPatr",
+          "obs",
+          "setor",
+          "tipo"
+        ]
+      },
+      "setores":{
+        ".indexOn": ["nome"]
+      },
+      "tipos":{
+        ".indexOn": ["nome"]
+      },
+      "tiposUsuarios":{
+        ".indexOn": ["tipo"]
+      },
+      "usuarios":{
+        ".indexOn":
+        [
+          "ativo",
+          "email",
+          "instituto",
+          "nome",
+          "setor",
+          "tipo"
+        ]
+      }
   }
 }
