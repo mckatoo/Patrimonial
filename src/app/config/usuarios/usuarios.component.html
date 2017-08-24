@@ -30,9 +30,9 @@
                 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="col s12">
                     <input type="hidden" name="key" [ngModel]="editarUsuario.key">
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="tiposUsuarios | async" id="tipo" class="validate" name="tipo" [ngModel]="editarUsuario.tipo | uppercase" required>
+                        <select materialize="material_select" [materializeSelectOptions]="tiposUsuarios" id="tipo" class="validate" name="tipo" [ngModel]="editarUsuario.tipo | uppercase" required>
                             <option value="" disabled selected>Escolha uma opção</option> 
-                            <option *ngFor="let tipo of tiposUsuarios | async" [value]="tipo.tipo | uppercase">{{tipo.tipo | uppercase}}</option>
+                            <option *ngFor="let tipo of tiposUsuarios" [value]="tipo.tipo | uppercase">{{tipo.tipo | uppercase}}</option>
                     </select>
                     </div>
                     <div class="input-field col s12 l6">
@@ -52,9 +52,9 @@
                         <label for="confirmarSenha">Confirmar Senha</label>
                     </div>
                     <div class="input-field col s12 l6">
-                        <select materialize="material_select" [materializeSelectOptions]="setores | async" id="setor" class="validate" name="setor" [ngModel]="editarUsuario.setor" required>
+                        <select materialize="material_select" [materializeSelectOptions]="setores" id="setor" class="validate" name="setor" [ngModel]="editarUsuario.setor" required>
                             <option value="" disabled selected>Escolha uma opção</option>
-                            <option *ngFor="let setor of setores | async" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option> 
+                            <option *ngFor="let setor of setores" [value]="setor.nome | uppercase">{{setor.nome | uppercase}}</option> 
                     </select>
                         <label for="tipo">Setor</label>
                     </div>

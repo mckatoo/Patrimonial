@@ -46,12 +46,11 @@ export class AppComponent {
           }
         }).subscribe(usuario => {
           this.usuario = usuario[0];
+          if (((router.isActive('config',true)) || (router.isActive('usuarios',true))) && (this.usuario['tipo'] == 'CONSULTOR')) {
+              this.router.navigate(['']);
+          }
         });
       }
-    });
-    this.router.events.subscribe(rota => {
-      console.log(rota);
-      console.log(this.usuario);
     });
   }
 

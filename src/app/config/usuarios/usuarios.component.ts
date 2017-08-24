@@ -18,9 +18,8 @@ export class UsuariosComponent implements OnInit {
 
   user = [];
   modalActions = new EventEmitter<string | MaterializeAction>();
-  usuarios: FirebaseListObservable<any>;
-  tiposUsuarios: FirebaseListObservable<any>;
-  setores: FirebaseListObservable<any>;
+  tiposUsuarios = [];
+  setores = [];
   editarUsuario = {
     "key": '',
     "tipo": '',
@@ -38,10 +37,9 @@ export class UsuariosComponent implements OnInit {
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.auth = afAuth.authState;
-    this.usuarios = db.list('usuarios/');
 
     this.auth.subscribe(auth => {
-      db.list('usuarios/',{
+      db.list('usuarios/', {
         query: {
           orderByChild: 'email',
           equalTo: auth.email
@@ -50,28 +48,48 @@ export class UsuariosComponent implements OnInit {
         if (usuario[0].tipo == 'ADMINISTRADOR') {
           db.list('usuarios/').subscribe(usuarios => {
             this.user = usuarios;
+            db.list('tiposUsuarios/').subscribe(tipos => {
+              this.tiposUsuarios = tipos;
+            });
+            db.list('setores/').subscribe(setores => {
+              this.setores = setores;
+            });
           });
         } else {
-          db.list('usuarios/',{
+          db.list('usuarios/', {
             query: {
               orderByChild: 'tipo',
               startAt: 'CONSULTOR',
               endAt: 'GESTOR'
             }
           }).subscribe(usuarios => {
-            usuarios.forEach( u => {
+            usuarios.forEach(u => {
               if (u.setor == usuario[0].setor) {
                 this.user.push(u);
               }
             });
-            console.log(this.user);
+          });
+          db.list('tiposUsuarios/',{
+            query: {
+              orderByChild: 'tipo',
+              startAt: 'CONSULTOR',
+              endAt: 'GESTOR'
+            }
+          }).subscribe(tipos => {
+            this.tiposUsuarios = tipos;
+          });
+          db.list('setores/',{
+            query: {
+              orderByChild: 'nome',
+              equalTo: usuario[0].setor.toLowerCase()
+            }
+          }).subscribe(setores => {
+            this.setores = setores;
           });
         }
       });
     });
 
-    this.tiposUsuarios = db.list('tiposUsuarios/');
-    this.setores = db.list('setores/');
   }
 
   validaSenha(form: NgForm) {
@@ -129,7 +147,7 @@ export class UsuariosComponent implements OnInit {
     } else {
       this.afAuth.auth.createUserWithEmailAndPassword(form.value.email, form.value.senha)
         .then(user => {
-          this.usuarios.push({
+          this.db.list('usuarios/').push({
             "tipo": `${form.value.tipo}`,
             "nome": `${form.value.nome}`,
             "email": `${form.value.email}`,
@@ -137,9 +155,9 @@ export class UsuariosComponent implements OnInit {
             "ativo": true,
             "instituto": "IESI"
           })
-          .then(() => {
-            form.reset();
-          });
+            .then(() => {
+              form.reset();
+            });
         });
     }
     this.limpar();

@@ -86,6 +86,17 @@ export class ControlePatrimonialComponent implements OnInit {
   ngOnDestroy() {
   }
 
+  pesquisar(str:string){
+    this.patrimonios = this.db.list('/patrimonios', {
+      query: {
+        orderByChild: 'descr',
+        startAt: str.toUpperCase(),
+        endAt: str.toUpperCase()+"\uf8ff",
+        once: 'value'
+      }
+    });
+  }
+
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   };
