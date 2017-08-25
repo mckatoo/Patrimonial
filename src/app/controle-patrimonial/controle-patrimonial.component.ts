@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
@@ -14,9 +14,10 @@ import * as firebase from 'firebase';
   templateUrl: './controle-patrimonial.component.html',
   styleUrls: ['./controle-patrimonial.component.scss']
 })
-export class ControlePatrimonialComponent implements OnInit {
+export class ControlePatrimonialComponent {
 
-  patrimonios: FirebaseListObservable<object>;
+  limitToLast: number = 10;
+  patrimonios = [];
   tipos: FirebaseListObservable<any>;
   setores: FirebaseListObservable<any>;
   areainst: FirebaseListObservable<any>;
@@ -72,29 +73,61 @@ export class ControlePatrimonialComponent implements OnInit {
     this.fornecedores = this.db.list('/fornecedores');
     this.areainst = this.db.list('/areainst');
     this.setores = this.db.list('/setores');
-    this.patrimonios = this.db.list('/patrimonios', {
+    this.db.list('/patrimonios', {
       query: {
         orderByKey: true,
-        limitToLast: 10
+        limitToLast: this.limitToLast
       }
-    });
+    }).subscribe(data => this.patrimonios = data);
   }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-  }
-
-  pesquisar(str:string){
-    this.patrimonios = this.db.list('/patrimonios', {
+  
+  mais(n: number) {
+    this.db.list('/patrimonios', {
       query: {
-        orderByChild: 'descr',
-        startAt: str.toUpperCase(),
-        endAt: str.toUpperCase()+"\uf8ff",
-        once: 'value'
+        orderByKey: true,
+        limitToLast: this.limitToLast + n
       }
-    });
+    }).subscribe(data => this.patrimonios = data);
+  }
+
+  pesquisar(str: string) {
+    if ((parseInt(str).toString() != 'NaN') && (str != '')) {
+      this.db.list('/patrimonios', {
+        query: {
+          orderByChild: 'numPlacaPatr',
+          equalTo: str,
+          limitToLast: 1
+        }
+      }).subscribe(data => {
+        if (data.length == 0) {
+          this.db.list('/patrimonios', {
+            query: {
+              orderByChild: 'numPlacaPatr',
+              equalTo: '00' + str,
+              limitToLast: 1
+            }
+          }).subscribe(data2 => this.patrimonios = data2);
+        } else {
+          this.patrimonios = data;
+        }
+      });
+    } else if (str != '') {
+      this.db.list('/patrimonios').subscribe(data => {
+        this.patrimonios = [];
+        data.forEach(snap => {
+          if (snap.descr.toUpperCase().indexOf(str.toUpperCase()) > -1) {
+            this.patrimonios.push(snap);
+          }
+        })
+      });
+    } else {
+      this.db.list('/patrimonios', {
+        query: {
+          orderByKey: true,
+          limitToLast: this.limitToLast
+        }
+      }).subscribe(data => this.patrimonios = data);
+    }
   }
 
   detectFiles(event) {
@@ -116,7 +149,7 @@ export class ControlePatrimonialComponent implements OnInit {
   uploadNota() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload("notasFiscais/",this.currentUpload, this.notaEdit.numNotaFiscal);
+    this.upSvc.pushUpload("notasFiscais/", this.currentUpload, this.notaEdit.numNotaFiscal);
   };
 
   imprimirNota(): void {
@@ -147,12 +180,12 @@ export class ControlePatrimonialComponent implements OnInit {
       this.modalActions.emit({ action: 'modal', params: ['open'] });
     }
   };
-  
+
   closeModal() {
     this.limpar();
     this.modalActions.emit({ action: 'modal', params: ['close'] });
   };
-  
+
   openModalNota(data) {
     this.notaEdit.numNotaFiscal = data;
     this.modalNota.emit({ action: 'modal', params: ['open'] });
@@ -165,10 +198,10 @@ export class ControlePatrimonialComponent implements OnInit {
 
   onSubmit(data) {
     if (this.patrimonioEdit.$key != undefined) {
-      this.patrimonios.update(this.patrimonioEdit.$key, data.value);
+      this.db.list('/patrimonios').update(this.patrimonioEdit.$key, data.value);
       this.limpar();
     } else {
-      this.patrimonios.push(data.value);
+      this.db.list('/patrimonios').push(data.value);
       this.limpar();
     }
   };
